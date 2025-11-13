@@ -1,0 +1,9 @@
+== how to delete endorsement ===
+select *
+from ins_assorted ia, ins_policy_types ipt
+where ia.assorted_string like '%endorsement-no%'
+and ia.policy_type_code = ipt.policy_type_code
+and ipt.class_code = '02'
+
+is mai check karna hai kai pehle agey tw koi endorsement tw nh bani hui 
+or phr proc_cancel_document procedure mai assorted code dal kar delete kardain

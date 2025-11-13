@@ -1,0 +1,26 @@
+CREATE OR REPLACE VIEW GET_EMP_RECORDS
+AS
+select a.Employee_Id,
+       a.employee_name,
+       a.cnic,
+       a.email,
+       to_char(a.date_of_birth, 'dd-Mon-yyyy') date_of_birth,
+       decode(a.department_code,
+              '1',
+              'Marketing',
+              '2',
+              'IT',
+              '3',
+              'HR',
+              '4',
+              'ACCOUNTS',
+              '5',
+              'FINANCE') as Department
+, max(b.salary) as Maximum_Salary 
+from Employee_Details a 
+full outer join Employee_Salary b 
+on a.Employee_id = b.employee_id 
+group by a.Employee_id, a.employee_name, a.cnic, a.email, a.date_of_birth, a.department_code 
+order by a.Employee_id desc;
+
+SELECT * FROM GET_EMP_RECORDS;

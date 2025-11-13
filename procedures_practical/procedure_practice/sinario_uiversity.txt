@@ -1,0 +1,61 @@
+CREATE OR REPLACE PROCEDURE sp_proc(
+std_type in char,
+mid_marks in number ,
+sessional_marks in number,
+lab_marks in number,
+final_paper_marks in number,
+status out varchar2
+)
+AS
+BEGIN
+  dbms_output.put_line('========= Mark Sheet ===========');
+ ----------------------------------------------------------------------------
+  IF(std_type ='A' and mid_marks >= 10)
+  THEN
+    IF(sessional_marks >= 15 and lab_marks >=8 and final_paper_marks >= 40)
+     THEN
+       status := ('Excellent Perfotrmance');
+       dbms_output.put_line('CPA 3.8');
+       END IF;
+   END IF;
+ ----------------------------------------------------------------------------      
+     IF(std_type ='B' and mid_marks < 10)
+    THEN
+    IF(sessional_marks >= 15 and lab_marks >=8 and final_paper_marks >= 40)
+     THEN
+       status := ('You Need to Improve Your Mids');
+       dbms_output.put_line('CPA Bellow 3 Approximately');     
+    END IF;
+   END IF;
+   
+  ----------------------------------------------------------------------------
+   IF(std_type ='C' and mid_marks >= 10)
+    THEN
+    IF(sessional_marks < 10 and lab_marks >=8 and final_paper_marks >= 40)
+     THEN
+       status := ('You Need to Improve Your Sessional Marks');
+       dbms_output.put_line('CPA Bellow 2.98 Approximately');     
+    END IF;
+   END IF;
+   
+   ------------------------------------------------------------------------------
+    IF(std_type ='D' and mid_marks >= 10)
+    THEN
+    IF(sessional_marks >= 10 and lab_marks <8 and final_paper_marks >= 40)
+     THEN
+       status := ('You Need to Improve Your Lab Marks');
+       dbms_output.put_line('CPA Bellow 2.50 Approximately');     
+    END IF;
+   END IF;
+   
+   -------------------------------------------------------------------------------
+   IF(std_type ='E' and mid_marks >= 10)
+    THEN
+    IF(sessional_marks >= 10 and lab_marks >=8 and final_paper_marks < 40)
+     THEN
+       status := ('You Need to Improve Your Final Marks');
+       dbms_output.put_line('CPA Bellow 2.49 Approximately');     
+    END IF;
+   END IF;
+   
+END;

@@ -1,0 +1,32 @@
+==== function ====
+create or replace function total_emp
+return number
+is 
+begin 
+  select count(employee_id) from 
+  employees;
+  return total_emp;
+end;
+
+=== 2nd function ==
+CREATE OR REPLACE FUNCTION total_emp  
+RETURN number IS  
+   total number(10) := 0;  
+BEGIN  
+   SELECT count(*) into total  
+   FROM employees;  
+    RETURN total;  
+END; 
+
+======== CASES ==========
+select emp_id, 
+emp_name,
+emp_dept,
+CASE
+  WHEN emp_dept = 'IT' THEN 'INFORMATION AND TECHLONOGY'
+  WHEN emp_dept = 'TIKTOK' THEN 'FARIGH LOG'
+  WHEN emp_dept = 'Civil' THEN 'CONSTRUCTION'
+  WHEN emp_dept = 'FINANCE' THEN 'ACCOUNTS'
+END emp_dept 
+from 
+employee_info;

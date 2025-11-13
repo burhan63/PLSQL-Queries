@@ -1,0 +1,46 @@
+=== SYS_REFCURSOR BY USING CONDITIONS ==
+CREATE OR REPLACE PROCEDURE proc_my_procedure(choice in number,
+emp_id in number,
+var_ret out sys_refcursor
+)
+IS
+BEGIN
+  IF(choice = '1')
+  THEN
+    OPEN var_ret FOR
+    select e.employee_id,e.first_name,e.last_name,e.hire_date,
+    d.department_name from
+    employees e ,
+    jobs j,
+    departments d
+    where
+    e.job_id = j.job_id
+    and
+    e.employee_id = d.department_id
+    and
+    e.hire_date NOT IN
+    (select e.hire_date from employees e
+    where e.hire_date between
+    trunc(to_date('17/06/1987','dd/mm/yyyy'))
+    and trunc(to_date('07/12/1999','dd/mm/yyyy'))
+    and
+    d.department_name IN
+    (select d.department_name from
+    departments d
+    where d.department_name like 'C%')
+    );
+    
+    ELSE IF(choice = '2')
+      THEN
+        OPEN var_ret FOR
+        select * from employees e
+        where e.employee_id = emp_id;
+    ELSE
+      dbms_output.put_line('Nothing to Show..!!');
+      
+
+    END IF;
+    END IF;
+
+
+END;

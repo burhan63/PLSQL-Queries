@@ -1,0 +1,21 @@
+== Task ==
+SELECT e.first_name,e.last_name,e.email,
+j.job_title, SUM(j.min_salary+j.max_salary) AS Total_salary,
+d.department_name FROM 
+employees e,
+jobs j,
+departments d
+WHERE 
+e.job_id = j.job_id 
+AND 
+e.employee_id = d.department_id
+AND d.department_name IN(
+SELECT d.department_name FROM departments d
+WHERE d.department_name LIKE 'C%')
+AND 
+e.hire_date not IN (
+SELECT e.hire_date FROM employees e
+WHERE e.hire_date BETWEEN trunc(to_date('13-01-2000','dd-mm-yyyy'))
+AND trunc(to_date('08-03-2000','dd-mm-yyyy')))
+GROUP BY e.first_name,e.last_name,e.email,
+j.job_title,d.department_name;

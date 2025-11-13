@@ -1,0 +1,60 @@
+IF {?POSTED}="A" THEN
+    FORMULA = "POSTED / UNPOSTED"
+END IF
+IF {?POSTED}="U" THEN
+    FORMULA = "UNPOSTED"
+END IF
+IF {?POSTED}="P" THEN
+    FORMULA = "POSTED"
+END IF
+
+
+task 01 : solution 
+--- ===  currect ==== ---
+select ia.client_code, count(ia.policy_type_code) 
+from 
+ins_assorted ia
+where ia.document_code = '04' 
+and 
+issue_date between to_date('01/01/2022','dd,mm,yyyy') and
+to_date('28/02/2022','dd,mm,yyyy')
+group by ia.client_code;
+
+
+task 02 : ek client pe kitne policies bni h us ka count 
+issue_date between '01-Jan-2022' and '31-Jan-2022'
+and document_code = '04'
+
+-- task 02 done properly --
+select ia.client_code, 
+ib.parttaker_name, 
+count(ia.policy_type_code) 
+from 
+ins_assorted ia 
+inner join 
+ins_parttaker ib 
+on ia.client_code = ib.parttaker_code 
+where ia.document_code = '04' 
+and 
+issue_date between to_date('01/01/2022','dd,mm,yyyy')
+and
+to_date('28/02/2022','dd,mm,yyyy')
+group by ia.client_code, 
+ib.parttaker_name;
+
+
+
+task 03: 
+select ipc.class_name, ipt.policy_name,
+count(ia.policy_type_code) 
+from 
+ins_assorted ia , ins_policy_types ipt, ins_policy_class ipc
+
+where ia.document_code = '04' 
+and ia.policy_type_code = ipt.policy_type_code
+and ipt.class_code = ipc.class_code
+and 
+issue_date between to_date('01/01/2022','dd,mm,yyyy')
+and
+to_date('28/02/2022','dd,mm,yyyy')
+group by ipc.class_name,ipt.policy_name

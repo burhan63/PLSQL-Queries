@@ -1,0 +1,26 @@
+----- creating first function using if/else ----------
+create or replace function my_final_func(a number, b number, c number)
+return varchar2
+IS
+result varchar2(100);
+BEGIN
+  IF(a=b and b=c)
+    THEN
+    result := a+b+c;
+  ELSE IF(a>b and b>c)
+      THEN
+      result := a-b-c;
+  ELSE IF(a<b and b<c)
+      THEN
+      result := a*b*c;
+  ELSE IF(a>b and b=c)
+      THEN
+      result:= a/b/c;
+  ELSE
+    result := ('Not Any operation Apply');
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+  return (result);
+END;

@@ -1,0 +1,13 @@
+create or replace function fact_func(x number)
+return varchar2
+is
+f varchar2(100);
+begin
+  if(x=0)
+  then
+    f:= 1;
+  else
+      f := x * fact_func(x-1);
+  end if;
+  return (f);
+end;

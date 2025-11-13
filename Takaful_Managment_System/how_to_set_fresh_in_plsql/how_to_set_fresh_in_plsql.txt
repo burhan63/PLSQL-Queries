@@ -1,0 +1,30 @@
+== how to mark fresh in pl/sql ==
+
+--Check Month
+--Check FRR
+select * from ins_assorted a
+where a.assorted_string like '%54419%' --for update
+
+
+
+
+--Check FRR
+select * from mt_vehicles_details vd
+where vd.assorted_code = '040000103002' --for update
+
+
+--it should be null
+select * from ins_premium_det pd
+where pd.assorted_code = '070000071912'
+
+
+
+
+--it will check last three column should be same
+select * from motor_commission_setup n
+where n.client_code = '08801322'
+
+
+
+select * from ins_premium pm
+where pm.reference_code = '040000103002'

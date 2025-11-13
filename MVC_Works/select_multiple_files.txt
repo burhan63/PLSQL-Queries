@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+<h1>The input multiple attributes</h1>
+<p>The multiple attribute specifies that the user is allowed to enter more than one value in an input field.</p>
+<label for ="Select files">Select files:</label><br><br>
+<input type ="file" id="files" name = "files" multiple><br>
+<p>To select multiple files, hold down the CTRL or SHIFT key while selecting.</p>
+</body>
+</head>
+</html>

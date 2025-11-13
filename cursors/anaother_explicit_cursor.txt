@@ -1,0 +1,34 @@
+=========== Another Example ===========
+DECLARE 
+  order_id orders_table.o_id%type;
+  order_name orders_table.o_name%type;
+  order_type orders_table.o_type%type;
+  order_price orders_table.o_price%type;
+  order_quantity orders_table.o_quantity%type;
+  order_shop_name orders_table.o_shop_name%type;
+  
+  CURSOR order_description 
+  IS 
+  select ot.o_id, ot.o_name,
+  ot.o_type, ot.o_price,
+  ot.o_quantity, ot.o_shop_name 
+  from 
+  orders_table ot;
+  
+BEGIN
+  OPEN order_description;
+  LOOP
+    FETCH order_description INTO
+    order_id, order_name, order_type,
+    order_price, order_quantity, 
+    order_shop_name;
+    
+    EXIT WHEN 
+    order_description%notfound;
+    dbms_output.put_line(order_id || ' ' || order_name || ' ' || order_type || ' ' || order_price || ' ' ||
+    order_quantity || ' ' || order_shop_name);
+    
+    END LOOP;
+  CLOSE order_description;  
+END;
+

@@ -1,0 +1,21 @@
+CREATE OR REPLACE PROCEDURE PROC_CURSOR_PR
+AS
+
+  CURSOR C1 IS
+
+  select e.employee_id,e.first_name,e.last_name,e.email,e.phone_number,
+  e.hire_date from
+  employees e;
+
+BEGIN
+  for rec in (select e.employee_id,e.first_name,e.last_name,e.email,e.phone_number,
+  e.hire_date from
+  employees e)loop
+ 
+  dbms_output.put_line(rec.employee_id || ' ' || rec.first_name || ' ' || rec.last_name || ' ' ||
+                        rec.email || ' ' || rec.phone_number || ' ' || rec.hire_date);
+                        
+  end loop;
+  
+
+END;

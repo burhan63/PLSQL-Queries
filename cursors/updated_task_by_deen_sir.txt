@@ -1,0 +1,79 @@
+DECLARE
+      employee_id employees.employee_id%type;
+      employee_fname employees.first_name%type;
+      employee_lname employees.last_name%type;
+      employee_email employees.email%type;
+      employee_phoneno employees.phone_number%type;
+      employee_hiredate employees.hire_date%type;
+      employee_jobid employees.job_id%type;
+      employee_salary employees.salary%type;
+      employee_commisionpact employees.commission_pct%type;
+      employee_managerid employees.manager_id%type;
+      employee_departmentid employees.department_id%type;
+      total_rows_master_cursor number(10);
+      total_rows_count number(2);
+      
+      -- Parent Cursor --
+      CURSOR employee_master 
+      IS
+      select e.employee_id,e.first_name,e.last_name,
+      e.email,e.phone_number,e.hire_date,e.job_id,
+      e.salary,e.commission_pct,e.manager_id,e.department_id
+      from employees e;
+      
+      -- Child cursor --
+      CURSOR child_cursor(get_job_id varchar2) 
+      IS 
+      select e.employee_id, e.first_name, e.last_name, e.email,e.job_id 
+      from employees e
+      where e.job_id = get_job_id;
+       
+BEGIN
+  -- Parent Cursor Implementation --
+  OPEN employee_master;
+  dbms_output.put_line('============================= Parent Cursor ======================================== ');
+  LOOP 
+    dbms_output.new_line();
+    FETCH employee_master INTO employee_id,
+    employee_fname, employee_lname, employee_email,
+    employee_phoneno,employee_hiredate, employee_jobid,
+    employee_salary, employee_commisionpact,employee_managerid,
+    employee_departmentid;
+    EXIT WHEN 
+      employee_master%notfound;
+      dbms_output.put_line(employee_id || ' ' || employee_fname || ' ' || employee_lname || ' ' || employee_email || ' ' ||
+                           employee_phoneno || ' ' || employee_hiredate || ' ' || employee_jobid || ' ' || employee_salary || ' ' ||
+                           employee_commisionpact || ' ' || employee_managerid || ' ' || employee_departmentid);                       
+     
+   END LOOP;
+   dbms_output.new_line();
+   dbms_output.put_line('---- Total Count -------');
+   total_rows_master_cursor := employee_master%rowcount;
+   dbms_output.put_line('Total Count of Master Cursor  = ' || total_rows_master_cursor);
+   dbms_output.new_line();
+   dbms_output.new_line();
+   dbms_output.new_line();
+   dbms_output.new_line();
+  
+   
+    
+       OPEN child_cursor('SH_CLERK');
+       dbms_output.put_line('============================== Child Cursor ======================================== ');
+       LOOP
+         dbms_output.new_line();
+       FETCH child_cursor INTO employee_id,
+       employee_fname, employee_lname, employee_email,employee_jobid;
+       EXIT WHEN 
+       child_cursor%notfound;
+       dbms_output.new_line();
+       dbms_output.put_line(employee_id || ' ' || employee_fname || ' ' || employee_lname || ' ' || employee_email
+                           || ' ' || employee_jobid );
+                           
+       END LOOP;
+       dbms_output.new_line();
+       dbms_output.put_line('---- Total Count -------');
+       total_rows_count := child_cursor%rowcount;
+       dbms_output.put_line('Total Count of Child Cursor  = ' || total_rows_count );
+       CLOSE  child_cursor;
+  CLOSE employee_master;  
+END;

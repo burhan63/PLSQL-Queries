@@ -1,0 +1,43 @@
+-------------
+select * 
+from 
+ins_livestock_animal_info ilai;
+
+-------------------
+
+select assorted_code 
+from 
+ins_livestock_animal_info;
+
+------------------
+select * 
+from 
+ins_livestock_animal_class ilc;
+
+-------------------------
+
+select ilai.animal_code,
+ilai.assorted_code, ilai.type_of_animal,
+to_char(ilai.ent_date,'dd/mm/yyyy')ent_date,
+ilai.animal_tag,
+ilac.class_name,ilac.active 
+from 
+ins_livestock_animal_info ilai, 
+ins_livestock_animal_class ilac
+where 
+ilai.animal_code = ilac.class_id
+and
+ilac.class_name = 'buffalo';
+ ---------------------------
+select e.employee_id,e.first_name,
+e.last_name,e.email,
+e.phone_number,
+to_char(e.hire_date,'dd/mm/yyyy') hire_date 
+from employees e
+order by e.employee_id 
+asc;
+
+-------------------------------
+select * from student
+where 
+name = 'HASAN'

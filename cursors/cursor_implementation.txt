@@ -1,0 +1,47 @@
+===== IMPLEMENTATION OF CURSORS =======
+-- cursor implimentation ---
+DECLARE 
+total_rows_count number(2); ----------------------------------------- declare total_rows_count
+BEGIN 
+  update orders_table ot
+  set ot.o_price = ot.o_price*ot.o_quantity;-------------------------- update query
+  
+  IF (sql%notfound)
+    THEN
+      dbms_output.put_line('No Orders Price Selected..!!');
+  ELSE IF (sql%found)
+    THEN 
+      total_rows_count := sql%rowcount;
+      dbms_output.put_line(total_rows_count ||'Order Selected');
+  ELSE 
+    dbms_output.put_line('Error');
+      
+  END IF;
+  END IF;
+  
+END;
+
+
+============ Another Implementation update with concat function ===============
+DECLARE 
+selected_rows number(2);
+BEGIN 
+   update products_orders po 
+   set po.p_name = concat(po.p_name,po.p_brand);
+   
+   IF(sql%notfound)
+    THEN 
+      dbms_output.put_line('You have Wrong Data selected');
+      
+   ELSE IF(sql%found)
+     THEN
+       selected_rows := sql%rowcount;
+       dbms_output.put_line(selected_rows || 'Rows selected');
+   ELSE
+     dbms_output.put_line('Sorry Error Occurs');
+   
+   END IF;
+   END IF;
+ 
+END;
+

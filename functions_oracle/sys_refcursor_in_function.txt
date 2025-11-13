@@ -1,0 +1,12 @@
+== sys_refcursor in function == 
+CREATE OR REPLACE FUNCTION return_table(n1_id number)
+RETURN sys_refcursor
+IS
+var_ret sys_refcursor;
+BEGIN
+  OPEN var_ret FOR
+  SELECT * FROM CNIC_CRUD_OPR CCO
+  WHERE N_ID = N1_ID ;
+  
+  return var_ret;
+END;

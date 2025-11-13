@@ -1,0 +1,37 @@
+create or replace function mar_sheet_func(marks_obtained number)
+return varchar2
+IS
+predicted_result varchar2(200);
+BEGIN
+  IF(marks_obtained >= 90)
+  THEN
+    predicted_result := ('You Got 90% Agregate Remarks: Excellent');
+  ELSE IF(marks_obtained >= 85 and marks_obtained >= 80)
+    THEN
+    predicted_result := ('Remarks : A+ Grade');
+  ELSE IF(marks_obtained >= 75 and marks_obtained >= 70)
+    THEN
+    predicted_result := ('Remarks : A Grade');
+  ELSE IF(marks_obtained >= 65 and marks_obtained >= 60)
+    THEN
+    predicted_result := ('Remarks : B Grade');
+  ELSE IF(marks_obtained >= 55 and marks_obtained >= 50)
+    THEN
+    predicted_result := ('Remarks : C Grade');
+  ELSE IF(marks_obtained >= 45 and marks_obtained >= 40)
+    THEN
+    predicted_result := ('Remarks : D Grade');
+  ElSE
+    predicted_result := ('Remarks : Failed');
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+  return predicted_result;
+  EXCEPTION
+  WHEN OTHERS THEN
+   raise_application_error(-20001,'An error was encountered - '||SQLCODE||' -ERROR- '||SQLERRM);
+END;
+

@@ -1,0 +1,25 @@
+== CONCEPT OF FRESH,RENEWAL,ROLLBACK TAKAFUL BUSSINESS == 
+
+FRESH: iska matlab kai mai nai aj sy pehle kabhi bh koi policy nh purchase ki hai 
+pehli bar salaam takaful sy li iska matlab yeh fresh hua
+
+RENEWAL: means kai apki policy hai or wo 1 saal yah kuch period bad expire hone wali hai
+mai dobara usko agar reniew karwaon tw iska mtalab renewal business hai 
+
+ROLLBACK: means agar meri aik policy pak qatar mai hai laikin mujhy packages samjh nh aye tw 
+mai nai salaam takaful mai lai li iska matlab roll back hai 
+
+== HOW TO CHECK ON DATABASE PL/SQL ==
+Check column in 
+select * from ins_assorted ia 
+where ia.assorted_satring like '%POLICYNO/CERTIFICATENO%'
+
+now check the column of FRR 
+IF FRE --> FRESH
+IF REN --> RENEWAL
+IF ROL --> ROLLBACK
+
+== HOW CHECK DECIDE TO CHECK COLUMN IN TABLES ==
+IF ASSORTED CODE START WITH 07 IT MEANS CERTIFICATE THEN CHECK IN MT_VEHICLES_TABLE
+
+IF ASSORTED CODE START WITH 04 MEANS POLICY IT MEANS CHECK ON INS_ASSORTED TABLE

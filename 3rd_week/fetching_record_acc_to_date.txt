@@ -1,0 +1,8 @@
+how to retreive date and fetch record according to date:
+ 
+============== code ==================
+select * from employees e1 
+where 
+e1.hire_date between to_date('01/01/1994','DD/MM/YYYY')
+and 
+to_date('01/01/1999','DD/MM/YYYY');

@@ -1,0 +1,116 @@
+============================================ online apex work ===================================
+create table employee(emp_id number primary key,
+emp_no number,
+emp_name varchar2(100),
+emp_gender char(1),
+emp_contact number,
+emp_address varchar2(250),
+emp_designation varchar2(200),
+emp_salary number,
+emp_dep varchar2(150)
+);
+select * from employee;
+
+insert into employee values(0106662288,1,'Burhan Ali','M',03112329374,'Fast Lane Shahra-e-Faisal','MTO',45000,'IT');
+insert into employee values(0106662289,2,'Isfahan Ali','M',03425431716,'Fast Lane Drig Road','IT Manager',55000,'IT');
+insert into employee values(01066622810,3,'Burhan Ali','M',03002833901,'Central jail','Software Engineer',79000,'SE');
+insert into employee values(01066622811,4,'Burhan Ali','M',03422833901,'Main Shahra-e-Faisal','Mern Developer',99000,'CE');
+insert into employee values(01066622812,5,'Burhan Ali','M',03101122547,'Disco Bakery','Data Base Administrator',100000,'CS');
+
+--update--
+update employee set emp_name = 'Rehman Khan' where emp_id = 01066622810 ;
+update employee set emp_name = 'Adil Hussain' where emp_id = 01066622811 ;
+update employee set emp_name = 'Ubaid Raza' where emp_id = 01066622812 ;
+
+--update employee surname --
+update employee set emp_surname = 'Hussain' where emp_id = 1066622811;
+update employee set emp_surname = 'Irshad' where emp_id = 106662288;
+update employee set emp_surname = 'Ali' where emp_id = 106662289; 
+update employee set emp_surname = 'Raza' where emp_id = 1066622812;
+update employee set emp_surname = 'Khan' where emp_id = 1066622810;
+
+--order by---
+select * from employee order by emp_no asc;
+
+-- add column as surname in table employee --
+alter table employee add emp_surname varchar2(250);
+
+--task No: 1 List empployee whose employee no = 5
+select * from employee where emp_no = 5;
+
+--Query 2 : List the Employee whose salary is between 45 K to 55 K.
+select * from employee where emp_salary between 45000 and 55000;
+
+--Solution 2 : Using operators (Greater than and less than)
+select * from employee where emp_salary >= 45000 and emp_salary <= 55000;
+
+--Query 3 : List the Employees whose name should have with ‘han’.
+select * from employee where emp_name like '%han%';
+
+--Query 4 : List the Employees whose name starts with A and surname starts with H.
+select * from employee where emp_name like 'A%' and emp_surname like 'H%';
+
+--Query 5 : List the Employees whos surname contains sf word.
+select * from employee where emp_name like '%sf%';
+
+--Query 7: List the Employees whose name not starts with P,B,R characters.
+select * from employee where emp_name like '[!PBR]%';
+
+--Query 8 : What is query to fetch first record from Employee table?
+select * from employee where rownum = 1;
+
+--Query 9: What is query to fetch last record from Employees table?
+select * from employee where rowid = (select max(rowid) from employee);
+
+--how to find the address of table --
+select * from employee a
+where emp_ID = (select max(emp_ID) from employee);
+
+--Query 10 : What is query to display odd rows from the Employees table?
+select * from(
+    select rownum as rno, e.* from employee e
+) where MOD(rno,2) = 1;
+
+--Query 11 : What is query to display even rows from the Employees table?
+select * from (
+    select rownum as rno , e.* from employee e
+) where MOD(rno,2)= 0;
+
+--Query 12 : Find Query to get information of Employee where Employee is not assigned to the department
+select emp_designation from employee;
+select emp_no from employee where emp_designation not in (
+    select emp_designation from employee
+);
+
+select * from employee where emp_designation not in ('MTO');
+
+--Query 13 : How to Show the Max salary and min salary together from Employees table?
+select max(emp_salary) from employee
+UNION
+select min(emp_salary) from employee;
+
+--Query 16 : How to display following using query?
+--*
+--**
+--***
+--****
+--*****
+SELECT lpad ('*', ROWNUM,'*') FROM employee WHERE ROWNUM <6;
+-- what is LPAD Expression and RPAD--
+-- LPAD means left padding expression--
+-- RPAD means right padding expression--
+-- for example if i have a string lpad --
+select lpad('lpad',10,'l') from dual;
+
+select rpad ('lpad',10,'r') from dual;
+
+-- intersect operator --
+select emp_name from employee
+INTERSECT
+select emp_name from employee;
+
+--Query 14 : Display 3 to 7 records from Employee table.
+select * from(
+    select rownum as no_of_row,e.* from employee e)
+where no_of_row between 2 and 5;
+

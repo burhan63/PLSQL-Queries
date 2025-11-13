@@ -1,0 +1,29 @@
+DECLARE 
+    F utl_file.file_type;
+    
+    CURSOR C1 IS
+    select c.cust_id,c.cust_name,c.cust_age,c.cust_gender,c.cust_contact,
+    c.cust_dep,c.cust_salary,c.cust_address from 
+    customer c;
+    C1_R C1%rowtype;
+
+BEGIN
+  F:= UTL_FILE.FOPEN('mycsv','cust_rec.csv','R');
+  for C1_R IN C1
+    LOOP
+      utl_file.put(F,C1_R.cust_id);
+      utl_file.put(F,''|| C1_R.cust_name);
+      utl_file.put(F,''|| C1_R.cust_age);
+      utl_file.put(F,''|| C1_R.cust_gender);
+      utl_file.put(F,''|| C1_R.cust_contact);
+      utl_file.put(F,''|| C1_R.cust_dep);
+      utl_file.put(F,''|| C1_R.cust_salary);
+      utl_file.put(F,''|| C1_R.cust_address);
+    END LOOP;
+    UTL_FILE.FCLOSE(F);
+
+
+    dbms_output.put_line('---- Total Count -------');
+    --total_rows_count1 := master_join_cursor%rowcount;
+    dbms_output.put_line('' || total_rows_count1);
+  

@@ -1,0 +1,41 @@
+create or replace function mar_sheet_func(marks_obtained number)
+return varchar2
+IS
+preicted_result varchar2(200);
+BEGIN
+  IF(marks_obtained >= 90)
+  THEN
+    preicted_result := ('You Got A++ Agregate Remarks: Excellent');
+  ELSE IF(marks_obtained >= 85 and marks_obtained >= 80)
+    THEN
+    preicted_result := ('Remarks : A+ Grade');
+  ELSE IF(marks_obtained >= 75 and marks_obtained >= 70)
+    THEN
+    preicted_result := ('Remarks : A Grade');
+  ELSE IF(marks_obtained >= 65 and marks_obtained >= 60)
+    THEN
+    preicted_result := ('Remarks : B Grade');
+  ELSE IF(marks_obtained >= 55 and marks_obtained >= 50)
+    THEN
+   preicted_result := ('Remarks : C Grade');
+  ELSE IF(marks_obtained >= 45 and marks_obtained >= 40)
+    THEN
+   preicted_result := ('Remarks : D Grade');
+  ELSE IF(marks_obtained = 0)
+    THEN
+      preicted_result := ('Remarks : May Be Absent Copy');
+  ELSE IF (marks_obtained < 0)
+    THEN 
+      preicted_result := ('You Entered Wrong Marks i-e Negative Range');
+  ElSE
+    preicted_result := ('Remarks : Failed');
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+  return preicted_result;
+END;

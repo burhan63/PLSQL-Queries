@@ -1,0 +1,47 @@
+=== PACKAGE IMPLEMENTATION ==
+CREATE OR REPLACE PACKAGE BODY PKG_UNIVERSITY_PROCS
+IS
+       PROCEDURE PROC_UNIVERSITY_DATA(
+       P_U_ID NUMBER,
+       P_U_CODE NUMBER,
+       P_U_NAME VARCHAR2,
+       P_U_CONTACT NUMBER,
+       P_U_EMAIL VARCHAR2,
+       P_U_LOCATION VARCHAR2,
+       P_U_CITY VARCHAR2,
+       P_U_NATIONALITY VARCHAR2,
+       P_U_PROVINCE_BELONG VARCHAR2,
+       P_AFFILIATED_WITH VARCHAR2
+    )
+    AS
+    BEGIN
+      INSERT INTO UNIVERSITY_DATA(U_ID,U_CODE,U_NAME,U_CONTACT,U_EMAIL,U_LOCATION,U_CITY,U_NATIONALITY
+                                  ,U_PROVINCE_BELONG,AFFILIATED_WITH)
+                                  VALUES
+                                  (P_U_ID,P_U_CODE,P_U_NAME,P_U_CONTACT,P_U_EMAIL,P_U_LOCATION,P_U_CITY,
+                                   P_U_NATIONALITY,P_U_PROVINCE_BELONG,P_AFFILIATED_WITH);
+    END;
+    
+    
+    PROCEDURE PROC_UNIVERSITY_DEPARTMENT(
+      P_UD_ID NUMBER,
+      P_UD_NAME VARCHAR2,
+      P_UD_SECTIONS NUMBER,
+      P_UD_LOC VARCHAR2,
+      P_UD_POPULATION NUMBER,
+      P_UD_NEW_ADDMISSIONS NUMBER)
+      
+      AS 
+      BEGIN 
+        INSERT INTO UNIVERSITY_DEPARTMENTS(UD_ID,UD_NAME,UD_SECTIONS,UD_LOC,
+                                               UD_POPULATION, UD_NEW_ADDMISSIONS)
+                                               VALUES
+                                               (P_UD_ID,P_UD_NAME,P_UD_SECTIONS,P_UD_LOC,
+                                               P_UD_POPULATION,P_UD_NEW_ADDMISSIONS);
+     END;
+      
+
+
+
+
+END PKG_UNIVERSITY_PROCS;

@@ -1,0 +1,15 @@
+CREATE OR REPLACE PROCEDURE proc_return(emp_id number,
+return_data out sys_refcursor)
+IS
+BEGIN
+  OPEN return_data FOR
+  select e.employee_id,e.first_name,e.last_name,j.job_title,j.min_salary,j.max_salary,d.department_name from
+  employees e ,
+   jobs j,
+   departments d
+   where e.job_id = j.job_id
+   and e.employee_id = d.department_id
+   and
+   e.employee_id = emp_id;
+
+END;

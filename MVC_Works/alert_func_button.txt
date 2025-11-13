@@ -1,0 +1,10 @@
+=== Creating button using Alert function ==
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<h2>The button Element</h2>
+    <button type="btn" onclick = "alert('Hello World!')">Click Me :</button>
+</body>
+</html>

@@ -1,0 +1,44 @@
+== Research About Sheduler in Oracle PL/SQL == 
+Definition: sheduler is implemented by the procedures, functions in dbms_sheduler in sql package. sheduler help karta hai 
+hai enable to control various computing task enterprise enviroment mai. sheduler help karta hai manage or plan karne mai task ki
+
+in order to run a job there are 3 main components that are necessary to run a job 
+step01:	define the type of program you want to shedule => 1.PL/SQL 2.Shell Script 3.Stored Procedure -> ap kis program mai shdule karna cha rahe hain either pl/sql or shell script or stored procedure
+step02:	define shedule for the program to run => Run Interval and Frequency -> set about the frequency like ap kitne duration tak karna cha rahe hain
+step03:	submit job to run via sheduler => Create a Job -> finally create a job that consist of program and shedule both
+
+-- this is how we create a program -- 
+BEGIN
+  DBMS_SCHEDULER.create_program(
+  PROGRAM_NAME   => 'plsql_program',
+  PROGRAM_TYPE  => 'PLSQL_BLOCK',
+  PROGRAM_ACTION => 'BEGIN DBMS_STATS.GATHER_SCHEMA_STATS(''HR'');END;',
+  enabled => TRUE,
+  COMMENTS => 'PROGRAM TO GATHER RECORDS');
+  DBMS_SCHEDULER.enable(NAME => 'PLSQL_PROGRAM');
+  
+END;
+
+SELECT OWNER, PROGRAM_NAME, ENABLED FROM DBA_SCHEDULER_PROGRAMS WHERE PROGRAM_NAME LIKE 'PLSQL_PROGRAM';
+
+-- this is how we create a shedule -- 
+BEGIN 
+  DBMS_SCHEDULER.create_schedule(
+  schedule_name => 'HOURLY_SHEDULE',
+  START_DATE => SYSTIMESTAMP,
+  REPEAT_INTERVAL => 'FREQ=HOURLY;  BYMINUTE = 0',
+  end_date => NULL,
+  comments => 'RUN EVERY HOUR AT 00 MINUTES EVERYDAY');
+END;
+
+SELECT OWNER, schedule_name FROM DBA_SCHEDULER_SCHEDULES;
+
+-- this is how to create a job -- 
+BEGIN 
+  DBMS_SCHEDULER.create_job(
+  job_name => 'TEST_SHED_JOB',
+  PROGRAM_NAME => 'plsql_program',
+  schedule_name => 'HOURLY_SHEDULE',
+  ENABLED => TRUE,
+  COMMENTS => 'MY TEST SCHEDULER JOB');  
+END;

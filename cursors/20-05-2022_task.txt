@@ -1,0 +1,76 @@
+=== Task Done === 
+== Prin Records ==
+DECLARE
+    employee_id employees.employee_id%type;
+    employee_fname employees.first_name%type;
+    employee_lname employees.last_name%type;
+    employee_email employees.email%type;
+    employee_phone employees.phone_number%type;
+    employee_hiredate employees.hire_date%type;
+    job_id jobs.job_id%type;
+    job_title jobs.job_title%type;
+    department_id departments.department_id%type;
+    department_name departments.department_name%type;
+    
+    -- Parent Cursor --
+    CURSOR master_emp 
+    IS
+    select e.employee_id,e.first_name,e.last_name from 
+    employees e;
+    
+    -- Child Cursor --
+    CURSOR child_cursor_job 
+    IS
+    select j.job_id,j.job_title from 
+    jobs j,employees e
+    where j.job_id = e.job_id;
+    
+    -- Sub Child Cursor --
+    CURSOR sub_child_departments
+    IS
+    select e.first_name,e.last_name,d.department_name from 
+    employees e, 
+    departments d
+    where e.department_id = d.department_id;
+
+BEGIN
+  --Parent Cursor --
+  OPEN master_emp;
+  dbms_output.put_line('                       == Master Employee == ');
+  dbms_output.new_line();
+  LOOP
+    FETCH master_emp INTO
+    employee_id, employee_fname, employee_lname;
+    EXIT WHEN master_emp%notfound;
+    dbms_output.put_line(employee_id || ' ' || employee_fname || ' ' || employee_lname);
+    dbms_output.new_line();
+  END LOOP;
+      -- Child Cursor --
+      OPEN child_cursor_job;
+      dbms_output.put_line('                     == Child Table == ');
+      dbms_output.new_line();
+      LOOP
+        FETCH child_cursor_job INTO job_id ,job_title;
+        EXIT WHEN child_cursor_job%notfound;
+        dbms_output.put_line(job_id || ' ' || job_title);
+        dbms_output.new_line();
+      END LOOP;
+      CLOSE child_cursor_job;
+      
+      -- Sub Child Cursor --
+      OPEN sub_child_departments;
+      dbms_output.put_line('                       == Sub Child == ');
+      dbms_output.new_line();
+      LOOP
+        FETCH sub_child_departments INTO employee_fname,
+        employee_lname,department_name;
+        EXIT WHEN sub_child_departments%notfound;
+        dbms_output.put_line(employee_fname || ' ' || employee_lname || ' ' || department_name);
+        dbms_output.new_line();
+        END LOOP;
+      CLOSE sub_child_departments;
+  
+  
+  CLOSE master_emp;
+  
+END;

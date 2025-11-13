@@ -1,0 +1,2 @@
+== how to create user in oracle using commang prompt == 
+create user user_name idientified by tms;

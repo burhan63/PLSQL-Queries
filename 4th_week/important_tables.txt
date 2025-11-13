@@ -1,0 +1,21 @@
+-- imp table 1 that is document_type --
+select * 
+from 
+ins_document_type
+order by 
+document_code asc;
+
+-- imp table 2 that is policy class --
+select * 
+from 
+ins_policy_class inc
+order by 
+inc.class_code asc;
+
+-- imp table 3 that is policy types --
+select 
+* 
+from 
+ins_policy_types
+where 
+class_code = '02';

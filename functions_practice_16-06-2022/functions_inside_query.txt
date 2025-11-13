@@ -1,0 +1,33 @@
+== inside function query == 
+
+create or replace function my_ret_sysrefcursor(
+var_ret out sys_refcursor,
+choice number
+)
+return varchar2
+is
+result varchar2(50);
+begin
+  if(choice = '1')
+  then
+  open var_ret for select ia.assorted_code,
+  ia.agency_code, ia.generate_against,
+  ipt.policy_type_code,ipt.policy_name,
+  ipc.class_code, ipc.class_name from Ins_Assorted ia,
+  ins_policy_types ipt, ins_policy_class ipc,
+  ins_document_type idt
+  where ia.document_code in ('04','05','06','07')
+  and ia.ent_date between trunc(to_date('01/05/2022','dd/mm/yyyy')) and
+  trunc(to_date('31/05/2022','dd/mm/yyyy')) and
+  ia.sup_by is null
+  and ia.policy_type_code = ipt.policy_type_code
+  and ipt.class_code = ipc.class_code and
+  ia.document_code = idt.document_code;
+
+  else
+    result := 'Error';        
+  end if;
+  
+  return(result);
+
+end;

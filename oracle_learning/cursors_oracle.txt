@@ -1,0 +1,30 @@
+===== Cursors in oracle =====
+cursors hum use karte hain jab humain data chahye hota hai
+kisi jagah per hum cursors kai sath easily fetch kar sakhte hain.
+
+Types of Cursors:
+there are 2 types of cursors 
+1. Implicit Cursors
+2. Explicit Cursors
+
+1. Implicit Cursors:
+implicit cursors automatically oracle generate karta hai jab sql statement excecute hoti hai.
+or jab koi explicit cursor implement nh hua hota. programmers control nh karsakhte implicit cursors
+ko and information in it.
+whenever a DML Statement(Insert,Update,Delete) command excecute hoti hai impilicit cursors 
+excecute hote hain statement kai sath. jaise insert command exccute hoti hai tw impilicit cursors 
+hold karte hain data ko jo exceute hota hai 
+for update and delete statment implicit cursor identify karta hai jo rows effect hoti hain.
+
+Attributes        Description
+%FOUND	          Return TRUE agar DML or Select Into Statement mai aik yah aik sy ziada rows affect hoti hain warna False Return kare ga.
+%NOTFOUND         Opposite work karta hai %FOUND kai
+%ISOPEN           Humaisha return kare ga FALSE implicit cursors mai q kai oracle automatically close kardaita hai SQL cursor after excecuting its statement.            
+%ROWCOUNT         Returns no of Rows jo Affect hoti hain DML or Select into Statement kai execute hone kai bad. 
+
+
+2. Explicit Cursors:
+expilicit cursor programmer defined cursor hote hain jis sy programmer ko control mil jata hai context area mai.
+expilicit cursor programmer designed hote hain unki apni requirments kai lihaz sy.
+expilicit cursor defined hote hain declaration section mai.
+It is created on a SELECT Statement which returns more than one row. 

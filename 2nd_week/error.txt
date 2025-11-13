@@ -1,0 +1,12 @@
+	---------------------------
+Crystal Reports
+---------------------------
+Logon failed.
+Details: ADO Error Code: 0x80004005
+Source: Microsoft OLE DB Provider for Oracle
+Description: Oracle client and networking components were not found. These components are supplied by Oracle Corporation and are part of the Oracle Version 7.3.3 or later client software installation.
+
+Provider is unable to function until these components are installed.
+---------------------------
+OK   
+---------------------------

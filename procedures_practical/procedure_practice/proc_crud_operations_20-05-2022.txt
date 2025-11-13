@@ -1,0 +1,81 @@
+========== PROCEDURE FOR CRUD ==============
+--> first i creata table named as saler 
+
+CREATE TABLE saler(sale_id number not null,
+saler_code char(1),
+saler_IBAN number not null,
+saler_person varchar2(100) not null,
+saler_contact number not null,
+saler_product_date date not null,
+saler_amount number,
+saler_shipment_address varchar2(200)
+);
+
+select * from saler s;
+
+--> now create procedure 
+
+CREATE OR REPLACE PROCEDURE proc_crud_opr(
+                                          
+p_saler_id number,
+p_saler_code varchar2,
+p_saler_IBAN number,
+p_saler_person varchar2,
+p_saler_contact number,
+p_saler_product_date date,
+p_saler_amount number,
+p_saler_shipment_address varchar2,
+choice varchar)
+AS
+BEGIN
+  IF choice = 'Insert' THEN
+    BEGIN
+      INSERT INTO saler
+        (sale_id,
+         saler_code,
+         saler_IBAN,
+         saler_person,
+         saler_contact,
+         saler_product_date,
+         saler_amount,
+         saler_shipment_address)
+      VALUES
+        (p_saler_id,
+        p_saler_code,
+         p_saler_IBAN,
+         p_saler_person,
+         p_saler_contact,
+         p_saler_product_date,
+         p_saler_amount,
+         p_saler_shipment_address);
+    END;
+  
+  ELSE
+    IF choice = 'Update' THEN
+      BEGIN
+        UPDATE saler
+           set sale_id = p_saler_id,
+               saler_code = p_saler_code,
+               saler_IBAN = p_saler_IBAN,
+               saler_person = p_saler_person,
+               saler_contact = p_saler_contact,
+               saler_product_date = p_saler_product_date,
+               saler_amount = p_saler_amount,
+               saler_shipment_address = p_saler_shipment_address
+               WHERE sale_id = p_saler_id;
+      END;
+    
+    ELSE
+      IF choice = 'Delete' THEN
+        BEGIN
+          DELETE FROM saler where sale_id = p_saler_id;
+        
+        END;
+      
+      ELSE
+        dbms_output.put_line('Error to Show');
+      
+      END IF;
+    END IF;
+  END IF;
+END;

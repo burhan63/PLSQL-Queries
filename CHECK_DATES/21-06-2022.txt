@@ -1,0 +1,50 @@
+select ip.parttaker_code,
+       ip.parttaker_name,
+       ipc.category_parttaker_code,
+       ipc.parttaker_category,
+       ips.salary_amount,
+       (ips.salary_amount * 2) AMOUNT,
+       ipd.salary_period_to - ipd.salary_period_from Period
+  from ins_parttaker             ip,
+       ins_parttaker_category    ipc,
+       ins_parttaker_salary      ips,
+       ins_parttaker_salary_paid ipd
+ where ip.category_parttaker_code = ipc.category_parttaker_code
+      --and ip.parent_code = ips.parttaker_code
+   and ips.salary_id = ipd.salary_id
+   and ip.active = 'Y'
+   and ipc.category_parttaker_code in ('09', '10', '11', '28', '30', '31')
+   and ip.parttaker_name is not null
+ group by ip.parttaker_code,
+          ip.parttaker_name,
+          ipc.category_parttaker_code,
+          ipc.parttaker_category,
+          ips.salary_amount,
+          ipd.salary_period_from,
+          ipd.salary_period_to
+union all
+select ip.parttaker_code,
+       ip.parttaker_name,
+       ipc.category_parttaker_code,
+       ipc.parttaker_category,
+       ips.salary_amount,
+       (ips.salary_amount * 2) AMOUNT,
+       ipd.salary_period_to - ipd.salary_period_from Period
+  from ins_parttaker             ip,
+       ins_parttaker_category    ipc,
+       ins_parttaker_salary      ips,
+       ins_parttaker_salary_paid ipd
+ where ip.category_parttaker_code = ipc.category_parttaker_code
+      --and ip.parent_code = ips.parttaker_code
+   and ips.salary_id = ipd.salary_id
+   and nvl(ip.active, 'Y') = 'Y'
+   and ipc.category_parttaker_code in ('30', '31')
+   and ip.parttaker_name is not null
+ group by ip.parttaker_code,
+          ip.parttaker_name,
+          ipc.category_parttaker_code,
+          ipc.parttaker_category,
+          ips.salary_amount,
+          ipd.salary_period_from,
+          ipd.salary_period_to;
+

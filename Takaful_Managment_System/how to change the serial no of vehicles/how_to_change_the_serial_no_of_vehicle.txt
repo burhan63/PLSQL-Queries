@@ -1,0 +1,21 @@
+==how to update the serial of vehicles==
+Step No: 01
+sub sy pehle policy no lainge or uska assorted code uthaye gey or phr check karey gey 
+kai wo fleed hai yah sheduled hai
+Query:
+select * from 
+ins_assorted ia 
+where ia.assorted_string like '%POLICY NO%'; 
+
+Step No:02
+phr hum us assorted code per check kare gey vehicles ki detail 
+Query:
+select * from mt_vehicles_details vd 
+where vd.assorted_code = 'ASSORTED_CODE';
+
+Step No:03 
+or phr hum query mai for update laga kar vehicle seq no ko change kardey gey 
+Query:
+select * from mt_vehicles_details vd 
+where vd.assorted_code = 'ASSORTED_CODE'
+for update;

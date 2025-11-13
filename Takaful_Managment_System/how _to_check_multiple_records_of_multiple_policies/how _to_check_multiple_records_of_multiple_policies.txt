@@ -1,0 +1,14 @@
+== how to check the multiple policies record == 
+Query:
+select * from ins_assorted ia 
+where ia.assorted_string in(select ia.assorted_string from
+ins_assorted ia where ia.assorted_string like '%62074%' or 
+ia.assorted_string like '%62075%' or
+ia.assorted_string like '%62053%' or
+ia.assorted_string like '%62076%' or
+ia.assorted_string like '%62068%' or
+ia.assorted_string like '%62050%' or
+ia.assorted_string like '%62078%' or 
+ia.assorted_string like '%62051%')
+
+is query sy multiple records ajaey gey bar bar aik aik karkai search nh karna parhey ga 

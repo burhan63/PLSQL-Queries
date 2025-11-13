@@ -1,0 +1,15 @@
+== Task By SVP Shehzad Sir ===
+== How to Rerturn Data using procedure ==
+
+CREATE OR REPLACE PROCEDURE proc_return(emp_id number,
+return_data out sys_refcursor)   --> sys_refcursor=> is to return table 
+IS 
+BEGIN
+  OPEN return_data FOR
+  SELECT e.employee_id,e.first_name,e.last_name,e.email,
+  e.phone_number,e.hire_date FROM 
+  employees e
+  WHERE 
+  e.employee_id = emp_id; 
+  
+END;

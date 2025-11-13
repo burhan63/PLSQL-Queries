@@ -1,0 +1,33 @@
+create or replace procedure get_emp_details(v_emp_id in number)
+as
+  emp_id number;
+  emp_name varchar2(50);
+  emp_cnic number;
+  emp_email varchar2(100);
+  emp_dob date;
+  emp_department varchar2(50);
+  emp_salary number;
+begin
+  select a.Employee_Id,
+       a.employee_name,
+       a.cnic,
+       a.email,
+       to_char(a.date_of_birth, 'dd-Mon-yyyy') date_of_birth,
+       decode(a.department_code,
+              '1','Marketing','2','IT','3','HR','4','ACCOUNTS','5','FINANCE')
+               Department,max(b.salary)Maximum_Salary into
+  emp_id,emp_name,emp_cnic,emp_email,emp_dob,emp_department,
+  emp_salary from Employee_Details a
+  full outer join Employee_Salary b
+  on a.Employee_id = b.employee_id
+  where rownum < 2 
+  group by a.Employee_id, a.employee_name, a.cnic,
+  a.email, a.date_of_birth,
+  a.department_code
+  order by a.Employee_id desc;
+  
+  Exception
+  when no_data_found then
+  dbms_output.put_line('No record found after'||emp_id);
+
+end;

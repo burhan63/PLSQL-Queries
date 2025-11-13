@@ -1,0 +1,16 @@
+DECLARE 
+  a number := 10;
+BEGIN
+   dbms_output.put_line('Prgram Started');
+IF(a>10)
+THEN 
+   dbms_output.put_line('A is Greater than 10');
+ELSE IF(a<10)
+THEN
+   dbms_output.put_line('A is Not Greater than 10');
+ELSE
+   dbms_output.put_line('Error');
+END IF;
+END IF; 
+    dbms_output.put_line('End Program.');
+END;

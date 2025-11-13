@@ -1,0 +1,25 @@
+==== Triggers ====
+Definition: Triggers are stored program or procedure aik bane banaye store program procure hain jab koi event fire hota hai 
+to triggers apne ap hi call hojate hain..
+Event Will be : Delete , Insert or Update 
+		Create, Alter or Drop
+		LOG ON,LOG OFF,Startup or Shutdown
+
+Benefits:
+1. gain strong control over security
+2. Refrencial Integrity 
+3. Auditing
+4. preventing invalid transaction
+
+Syntax:
+CREATE OR REPLACE TRIGGER trigger_name
+BEFORE | AFTER
+INSERT OR UPDATE OR DELETE 
+ON table_name
+FOR EACH ROW
+
+DECLARE 
+	declaration statement
+BEGIN
+	exccutable-statement
+END;

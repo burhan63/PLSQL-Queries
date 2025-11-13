@@ -1,0 +1,43 @@
+=== imp tables for checking records and updated it === 
+-- table of colors -- 
+select * 
+from 
+ins_colors ic where ic.color_name like '%GRAPHITE%';
+
+-- table of color with color code -- 
+select * from 
+ins_colors ic 
+where ic.color_code = '136';
+
+-- claim table -- 
+select * 
+from 
+ins_claim ic 
+where ic.insurance_type = '040000002052';
+
+-- getting assorted code in ins_assorted table --
+select * 
+from 
+ins_assorted ia where ia.assorted_code = '040000002052';
+
+
+-- getting assorted string in ins_assorted table -- 
+select *
+from ins_assorted ia 
+where ia.assorted_string like '%204-1-4-5-29-0000000269%';
+
+-- checking premium dt with assorted code -- 
+select * 
+from ins_premium_det pd 
+where pd.assorted_code = '040000002052';
+
+
+
+
+=== imp description == 
+agar humare pass koi policy unpost ki req aye tw in batao ka dihan rakhna hai..
+
+--> sub sy pehle humare pass jo policy string aye gi wo hum lai gey then us sy hum assorted code lain ge 
+or us assorted code ko hum check kare gey kai koi claim tw nh aya hua or luch generate against mai tw nh araha 
+or han wo isi month ka hai agar hai tw phr hum aik procedure hai PROC_UNPOST_DOCUMENT ka us mai assorted code ko dal kar 
+unpost karde gey 

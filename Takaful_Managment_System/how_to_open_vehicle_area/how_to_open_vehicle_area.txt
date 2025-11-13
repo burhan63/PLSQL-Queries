@@ -1,0 +1,17 @@
+== how to open vehicle area ==
+
+Step No: 01: sub sy pehle endno/policyno/certificate no aye tw isey check karna hai
+or assorted ode get karna hai. is query ki madad sy 
+
+Query:
+select * from ins_assorted ia 
+where ia.assorted_string like '%endno/policyno/certificate no%';
+
+Step No: 02: assorted code uthane kai kai bad mt_vehicle_details mai dal daina hai
+
+Query: 
+select * from mt_vehicle_details vd 
+where vd,assorted_code = 'Assorted_Code'
+for update;
+
+or visible_flag mai 'N' ki jagah 'Y' kardaina hai simple.

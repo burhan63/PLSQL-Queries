@@ -1,0 +1,17 @@
+CHANGE POSTING DATE TO 30/06/2022 --> How to Change it 
+
+Step No:01
+select * from ins_assorted ia 
+where ia.assorted_string like '%POLICY_NO%'
+for update;
+
+now erase the sup_date and paste the date like 30/06/2022
+or hum seq no pick karle gey phr hum gl_vouch_mast mai daley gey 
+
+Step No:02
+select * from gl_voch_mast vm 
+where vm.seq_no = 'seq_no'
+for update;
+
+or phr hum V_DATE mai 30/06/2022 or Created_date mai 30/06/2022 kardey gey posting date 
+update hojaey gi 

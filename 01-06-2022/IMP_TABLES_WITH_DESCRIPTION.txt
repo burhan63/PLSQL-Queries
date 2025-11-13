@@ -1,0 +1,44 @@
+-- IMP TABLE FOR INS_ASSORTED --
+SELECT * FROM Ins_Assorted IA;
+
+-- IMP TABLE FOR DOCUMENT WISE -- 
+SELECT * FROM INS_DOCUMENT_TYPE IDT ORDER BY IDT.DOCUMENT_CODE,IDT.DOCUMENT_NAME ASC;
+-- DOCUMENT CODE    --DOCUMENT TYPE
+-- 01                 QUATATION
+-- 02                 COVER NOTE
+-- 03                 ADDENDUM
+-- 04                 POLICY
+-- 05                 ENDORSEMENT
+-- 06                 OPEN POLICY
+-- 07                 CERTIFICATE OF INSUARANCE 
+-- 08                 RENEWAL NOTICE
+-- 09                 SHEDULE POLICY
+
+-- IMP TABLE FOR POLICY TYPE -- 
+SELECT * FROM INS_POLICY_TYPES IPT ORDER BY IPT.POLICY_TYPE_CODE,IPT.POLICY_NAME ASC;
+
+-- IMP TABLE FOR POLICY CLASS -- 
+SELECT * FROM INS_POLICY_CLASS IPC ORDER BY IPC.CLASS_CODE,IPC.CLASS_NAME ASC;
+-- CLASS CODE   --CLASS NAME 
+-- 00             ALL
+-- 01             MARINE
+-- 02             MOTOR
+-- 03             MISCELLANEOUS
+-- 04             ENGINEERING
+-- 05             FIRE
+-- 06             N/A
+-- 07             BOND
+-- 08             HEALTH
+
+-- IMP TABLE FOR INS_BRANCHES -- 
+SELECT * FROM INS_BRANCH B;
+-- BRANCH CODE    --BRANCH NAME 
+-- 16               KARACHI-BUSINESS CENTRE
+
+-- partakker table -- 
+select * 
+from ins_parttaker ip;
+
+-- partakker category table -- 
+select * 
+from ins_parttaker_category ipc;

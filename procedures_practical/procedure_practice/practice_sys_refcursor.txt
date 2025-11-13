@@ -1,0 +1,49 @@
+== PROCEDURE ==
+== Testing SYS_REFCURSOR ==
+CREATE OR REPLACE PROCEDURE proc_testing(
+test1 in number,
+var_ret out sys_refcursor
+)
+IS
+BEGIN
+  IF(test1 = '1')
+  THEN
+    OPEN var_ret FOR
+    select concat(e.first_name,e.last_name) as FullName,e.email,e.phone_number,
+    e.hire_date,
+    c.cust_name,c.cust_age,c.cust_contact,c.cust_dep,c.cust_salary from
+    employees e,
+    customer c
+    where
+    e.employee_id = c.cust_id
+    and
+    e.hire_date IN
+    (select e.hire_date from
+    employees e where
+    e.hire_date between
+    trunc(to_date('21/09/1989','dd/mm/yyyy'))
+    and trunc(to_date('07/02/1999','dd/mm/yyyy'))
+    )
+    and
+    c.cust_name NOT IN (
+    select c.cust_name from customer c where
+    c.cust_name LIKE 'Z%');
+
+  ELSE IF(test1 = '2')
+    THEN
+      OPEN var_ret FOR
+      select e.first_name,e.last_name,e.email,
+      c.cust_name,c.cust_age,c.cust_gender from
+      employees e, customer c
+      where
+      e.employee_id = c.cust_id;
+  ElSE
+    dbms_output.put_line('Error');
+
+  END IF;
+  END IF;
+
+END;
+
+
+

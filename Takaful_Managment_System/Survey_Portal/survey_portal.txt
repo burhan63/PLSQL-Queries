@@ -1,0 +1,28 @@
+== Survey Portal Now Show in Portal Steps ==
+
+Step No: 01: sub sy pehle apko claim no dia jaey ga ap is query sy claim code ko nikale gey.
+select *
+from ins_claim ic
+where ic.claim_string like '%53919%'
+
+Step No:02: claim Code nikalne kai bad paste kare gey
+select *
+from ins_claim_serveyor ics
+where ics.claim_code = '0700022956'
+
+--> agar data ajaey tw samjh jana kai surveyour appoint hai wahan sy surveyour code utha lain gey
+
+Step No: 03: surveyour laine kai bad usey paste kare gey query mai waisey is sy hum only partakker ka code daikh rahe hain 
+03 per q kai survyour hai  
+select *
+from ins_parttaker i
+where i.parttaker_code ='03000116'
+
+Step No: 04: claim code ko phr is query mai daley gey or multiple records aye gey phr 
+hum usey rec_id mai sy sort kardai gey.
+select *
+from survey_portal_claim_status a
+where a.claim_code ='0700022956'
+
+then in_active mai sub 'N' hongey humain sub sy last main jakar us 'N' ko 'Y' kardey gey 
+survey portal per show hona start hojaey ga 

@@ -1,0 +1,10 @@
+== how to upper case and lower case fields ==
+syntax: 
+upper(column name)
+lower(column name)
+
+example: for upper case:
+select upper(c.cust_name) from customer c;
+
+for lower case:
+select lower(c.cust_name) from customer c;

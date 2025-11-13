@@ -1,0 +1,29 @@
+---- isko thek karwana hai rehman bhai sy ----
+DECLARE
+uni_id university_ssuet.u_id;
+uni_name university_ssuet.u_name;
+uni_address university_ssuet.u_address;
+uni_city university_ssuet.u_city;
+uni_postal_code university_ssuet.u_postal_code;
+uni_province university_ssuet.u_province;
+uni_contact university_ssuet.u_contact;
+uni_fax university_ssuet.u_fax;
+BEGIN 
+  select u_id into uni_id from 
+  university_ssuet where uni_address = u_address;
+  
+  IF(u_address = 'Mian University Road Karachi')
+  THEN
+    dbms_output.put_line('Adress = ',u_address);
+  ELSE IF(u_address = 'Mian University Road Karachi')
+  THEN 
+    dbms_output.put_line('Address = ',u_address);
+  ELSE IF(u_address = 'Clifton Karachi')
+  THEN
+    dbms_output.put_line('Address = ',u_address);
+  ELSE
+    dbms_output.put_line('No Address Fund');
+  END IF;
+  END IF;
+  END IF;
+END;

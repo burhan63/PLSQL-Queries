@@ -1,0 +1,9 @@
+-- paperless --
+select * from ins_claim ic 
+where ic.claim_string like '%60061%';
+
+select * from pls_transaction_header p 
+where p.txn_ref = '0700027601';
+
+select * from pls_transaction_details ip
+where ip.txn_header_id ='16719' for update;

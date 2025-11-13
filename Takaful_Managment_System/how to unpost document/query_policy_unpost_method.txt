@@ -1,0 +1,30 @@
+== Policy Unpost Method With Queries == 
+
+-- first check assorted string --
+-- Step: 01 --
+select * from 
+ins_assorted ia where ia.assorted_string like '%%';
+
+-- now check the generate against --
+-- Step: 02 --
+select * from ins_assorted ia 
+where ia.generate_against = '';
+
+-- and then check premimium det whos rt were not cut --
+-- Step: 03 --
+select * from ins_premium_det dt where 
+dt.assorted_code = '';
+
+-- lastly check claim --
+-- Step: 04 --
+select * from ins_claim ic 
+where ic.insurance_type = '';
+
+-- Note: Bus yeh yad rahe kai claim na utha hua hn agar claim utha hua hai tw hum--
+-- policy ko unpost nh kare gey --
+
+Step: 05--> get the seq no in assorted code and then update posted_by to Cancel_by and posted_date into cancel_date
+
+select * from gl_vouch_mast vd 
+where vd.sqe_no = 'seqno'
+for update;

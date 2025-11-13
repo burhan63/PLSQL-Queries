@@ -1,0 +1,14 @@
+== import and export data == 
+import means data mere pass hai or wo mujhy dalna hai wo import data hoga 
+export means data mujhy bhejna hai wo export hai 
+
+sub sy file apko paste karni hai desire folder mai 
+or 
+phr command prompt mai jakar 
+administrator/11.2/bin --> aise hi jana hai 
+
+or phr wahan username: tms --> because user yeh hi hum nai create kia hai 
+pwd: tms 
+
+write aise karna hai username: tms/tms
+--> imp --> means import 

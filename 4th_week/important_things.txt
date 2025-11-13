@@ -1,0 +1,48 @@
+important things which i have to learn 
+
+-- here this is the important query of table --
+select 
+* 
+from 
+ins_policy_class
+order by 
+class_code asc;
+
+we currently work on policy = motor where 
+class_code = 02
+
+
+class_code    class_name 
+00	      ALL
+01            MARINE     
+02            MOTOR         (it is important)
+03            MISCELLANEOUS
+04            ENGINEERING
+05            FIRE
+06            N/A
+07            BOND
+08            HEALTH
+
+
+-- now here is the policy type table query --
+select 
+* 
+from 
+ins_policy_types
+where 
+class_code = '02';
+
+-- in 02 class which have following policy_name that are follows --
+--- here is the table --
+
+
+class_code    class_name 
+02	      MOTORCYCLE  COMPREHENSIVE
+04            PRIVATE CAR THIRD PARTY    
+06            PRIVATE CAR COMPREHENSIVE
+08            MOTORCYCLE THIRD PARTY
+09            COMMERCIAL VEHICLE
+10            COMMERCIAL VEHICLE THIRD PARTY
+85            MOTOR CYCLE THEFT AND TOTAL LOSS
+              
+             

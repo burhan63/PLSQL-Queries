@@ -1,0 +1,6 @@
+-- table of colors -- 
+select * 
+from 
+ins_colors; 
+
+this command is help u to check colors with respective codes 

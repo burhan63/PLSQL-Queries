@@ -1,0 +1,17 @@
+--== how to currect net contribution ==
+
+select * from ins_assorted
+where assorted_string like '%20761-07-2022%'
+
+--now check the order no in following query then if order no 02 then add in assorted code 02
+
+select * from ins_coinsurances
+where assorted_code ='050000484468'
+
+--now..
+
+select * from ins_premium
+where reference_code ='05000048446802'
+order by to_number(order_no) for update 
+
+--and then copy the amount of 2nd last and paste in last 

@@ -1,0 +1,185 @@
+-- table for student --
+create table student_data(std_id number primary key,
+std_name varchar2(60),
+std_gender char(1),
+std_contact number,
+std_department varchar2(50),
+std_address varchar2(70)
+);
+
+insert into student_data values(101,'Burhan Ali','M',03112329374,'CS','Street No:14 Pib Colony Karachi');
+insert into student_data values(102,'Isfahan Ali','M',03002833901,'SE','Clifton Street 14 Karachi');
+insert into student_data values(103,'Zohaib Khan','M',03422833901,'CV','Near Exact Corporation Karachi');
+insert into student_data values(104,'Marrium Malik','F',03422833901,'CV','Near Exact Corporation Karachi');
+insert into student_data values(105,'Areeba Shahid','F',0215155188,'','Near Exact Corporation Karachi');
+insert into student_data values(106,'Lalain Khan','M',55445566998,'CV','');
+select * from student_data;
+select * from student_data order by std_id asc;
+select * from student_data order by std_name asc; 
+
+-- Null Value Checker using Nv1, Nv2, 
+-- in ko tables mai null values check karne kai liye kiya jata hai ----
+
+
+
+select std_id, std_name, std_gender, std_contact,
+std_department,
+CASE 
+WHEN std_department = 'CS' THEN 'dept=Computer Science Dept'
+WHEN std_department = 'SE' THEN 'dept=Software Engineering Dept'
+WHEN std_department = 'CV' THEN 'dept=Civil Engineering Dept'
+END std_department
+from student_data;
+
+select std_id,std_name from student_data where std_name in 
+(select std_name from student_data where std_id=103);
+
+
+-- 2nd table admin --
+create table admin_department(ad_id number primary key,
+ad_name varchar2(50),
+ad_contact number,
+ad_cabin_no varchar2(50),
+ad_designation varchar2(50)
+);
+
+select * from admin_department;
+insert into admin_department values(1,'Vakas',021112233445,'HS-101','Junior Admin');
+insert into admin_department values(2,'Haider',021777888995,'HS-105','Assistant Admin');
+insert into admin_department values(3,'Ahmad',0211999888444,'HS-106','Junior Admin');
+select * from admin_department order by ad_id asc;
+
+select * from student_data
+inner join admin_department on
+student_data.std_id = admin_department.ad_id;
+
+-- Null Value Checker using Nv1, Nv2, 
+-- in ko tables mai null values check karne kai liye kiya jata hai ----
+select ad_name, ad_salary, nvl(ad_commision,0) from admin_department;
+-- how to add column in table -- 
+alter table admin_department add ad_salary number;
+alter table admin_department add ad_commision float;
+select * from admin_department;
+update admin_department set ad_salary = 15000 where ad_id in (1,2);
+update admin_department set ad_commision = .10 where ad_id = 1;
+update admin_department set ad_commision = .20 where ad_id = 2;
+
+select ad_name, ad_salary, ad_commision from admin_department;
+select ad_name, ad_Salary, ad_commision, ad_salary*ad_commision as total_amount from admin_department;
+select ad_name, ad_Salary, ad_commision, ad_salary*NVL(ad_commision, 0) as total_amount from admin_department where ad_id = 3;
+select ad_name, nvl(ad_salary, 0) from admin_department;
+select ad_name, ad_salary, nvl(ad_commision,0) from admin_department;
+select ad_name, ad_salary, (ad_salary*ad_commision)+ad_salary as total_amount, from admin_department;
+
+-- Having clause and group by clause --
+-- ==> Group By Clause: ka use hum jab use karte hain tw us sy tamam chezain aik grouping mai ajati hain or is 
+-- mai aggregate functions use kar sakhte hain but yeh zarori nh hai kai grouping mai agregate use ho
+-- isko samjhne kai liye aik table create karte hain orders name ka 
+
+select * from product_order;
+alter table product_order add total_amount float;
+alter table product_order add GST float;
+update product_order set GST = 3.86 where order_id = 30;
+update product_order set GST = 8.66 where order_id = 40;
+update product_order set GST = 4.16 where order_id = 10;
+update product_order set GST = 3.26 where order_id = 20;
+update product_order set GST = 6.66 where order_id = 50;
+
+-- now calculate total_amount --
+update product_order set total_amount = order_price + GST;
+
+-- group by clause --
+select order_name, count(order_name), sum(total_amount) from product_order group by order_name;
+select order_name, count(order_name), max(total_amount) from product_order group by order_name;
+select order_name, count(order_name), min(total_amount) from product_order group by order_name;
+select max(total_amount) from product_order;
+select min(total_amount) from product_order;
+
+-- Having clause --
+-- ==> having clause ka use select statement or group by kai sath hota hai
+-- having clause ki help sy hum return rows kai group ko or bh restrict karsakhte hain 
+-- or jo having clause ki condition ko satisfy kare ga wohi output mai aye ga 
+select order_name, sum(total_amount) from product_order group by order_name 
+having sum(total_amount) > 800;
+
+-- having clause with relational operator --
+select order_name, sum(total_amount) from product_order
+group by order_name
+having sum(total_amount) > 500 or sum(total_amount) < 200;
+
+
+
+===========================================================================================================================
+PL/SQL WORK 27-04-2022
+
+select * from user_tables;
+
+select * from INS_HEALTH;
+select * from INS_HEALTH_AGE_BAND;
+select * from ins_health_base_rate;
+
+
+--currect joins --
+select * from ins_health_age_band
+inner join ins_health_base_rate on
+ins_health_age_band.band_code = ins_health_base_rate.base_rate_code (+);
+
+
+-- currect call columns using joins --
+select type, loadingdiscount,gender from ins_health_age_band
+inner join ins_health_base_rate on
+ins_health_age_band.band_code = ins_health_base_rate.base_rate_code; 
+
+-- select statement using in operator --
+select ent_by, ent_date, last_update_by from ins_health_age_band
+where 
+band_code in (17,18,19);
+
+
+-- select statement using not in operator --
+select ent_by, ent_date, last_update_by from ins_health_age_band
+where 
+band_code not in (17,18,19);
+
+select * from ins_health_base_rate;
+
+select count(*) from ins_health_base_rate;
+select count(distinct limit1) from ins_health_base_rate;
+select sum(limit1) from ins_health_base_rate;
+select sum(limit2) from ins_health_base_rate;
+select limit1, limit2, base_rate from ins_health_base_rate;
+select sum(base_rate) from ins_health_base_rate;
+
+select count(base_rate) from ins_health_base_rate;
+select count(type) from ins_health_base_rate;
+
+select * from ins_health_base_rate where base_rate_code in (43,44,45);
+
+-- having clause --
+select sum(limit1) from ins_health_base_rate 
+group by limit1 
+having sum(base_rate) > 2000;
+
+-- group by clause --
+select limit1 from ins_health_base_rate group by limit1;
+
+select * from ins_health_group;
+select * from ins_health_disease;
+select count(disease_description) from ins_health_disease;
+
+--joins for 2 tables --
+select * from ins_health_disease 
+inner join ins_health_group on
+ins_health_disease.disease_code = ins_health_group.group_code(+);
+
+-- check disease_description and group name from 2 tables --
+select disease_description, group_name from ins_health_disease 
+inner join ins_health_group on
+ins_health_disease.disease_code = ins_health_group.group_code;
+
+
+
+
+
+
+

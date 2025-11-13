@@ -1,0 +1,3 @@
+== how to check that is fleet or shedule ==
+-->agar aik assorted code per multiple cars arahi hain tw iska matlab wo fleed hai
+--> agar aik assorted code per aik hi car aye multiple na aye tw wo sheduled hai  

@@ -1,0 +1,38 @@
+=== BRANCH CRUD == 
+CREATE OR REPLACE PROCEDURE branch_crud(CHOICE           VARCHAR2,
+                                        P_BRANCH_ID      NUMBER,
+                                        P_BRANCH_CODE    NUMBER,
+                                        P_BRANCH_NAME    VARCHAR2,
+                                        P_BRANCH_CITY    VARCHAR2,
+                                        P_BRANCH_COUNTRY VARCHAR2,
+                                        P_BRANCH_ADDRESS VARCHAR2) AS
+BEGIN
+  IF (CHOICE = 'INSERT') THEN
+    INSERT INTO N_BRANCH
+      (BRANCH_ID,
+       BRANCH_CODE,
+       BRANCH_NAME,
+       BRANCH_CITY,
+       BRANCH_COUNTRY,
+       BRANCH_ADDRESS)
+    VALUES
+      (P_BRANCH_ID,
+       P_BRANCH_CODE,
+       P_BRANCH_NAME,
+       P_BRANCH_CITY,
+       P_BRANCH_COUNTRY,
+       P_BRANCH_ADDRESS);
+  ELSIF (CHOICE = 'UPDATE') THEN
+    UPDATE N_BRANCH
+       SET BRANCH_CODE    = P_BRANCH_ID,
+           BRANCH_NAME    = P_BRANCH_NAME,
+           BRANCH_CITY    = P_BRANCH_CITY,
+           BRANCH_COUNTRY = P_BRANCH_COUNTRY,
+           BRANCH_ADDRESS = P_BRANCH_ADDRESS
+     WHERE BRANCH_ID = P_BRANCH_ID;
+  ELSIF (CHOICE = 'DELETE') THEN
+    DELETE FROM N_BRANCH WHERE BRANCH_ID = P_BRANCH_ID;
+  
+  END IF;
+
+END;

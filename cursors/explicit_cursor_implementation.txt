@@ -1,0 +1,33 @@
+============= Explicit Cursors ====================
+-------- Explicit Cursor -----------
+DECLARE
+  product_id  products_orders.p_id%type;
+  product_no  products_orders.p_no%type;
+  product_name products_orders.p_name%type;
+  product_brand products_orders.p_brand%type;
+  product_headquarter products_orders.p_headquarter%type;  
+  
+  CURSOR product_description 
+  IS
+  select po.p_id,po.p_no,
+  po.p_name,po.p_brand,
+  po.p_headquarter from 
+  products_orders po;
+  
+BEGIN 
+  OPEN product_description;
+  LOOP 
+  FETCH product_description INTO
+  product_id, product_no, product_name,
+  product_brand, product_headquarter;
+    
+  EXIT WHEN 
+  product_description%notfound;
+  dbms_output.put_line( product_id || ' ' || product_no || ' ' || product_name || ' ' ||  product_brand || ' ' ||
+  ' ' || product_headquarter);
+      
+  END LOOP;
+  
+  CLOSE product_description;
+  
+END;

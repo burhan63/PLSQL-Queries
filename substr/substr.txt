@@ -1,0 +1,11 @@
+=== substring in oracle == 
+substr ka matlab ka string ko torna 
+means agar mera name hai Burhan Ali then mujhy daikhna hai only 'Bu' 
+tw mai 
+substr(columnname, 1,2) --> yeh 1,2 aik range hai 
+
+SYNTAX: --> fetching record of table customer 
+select * from customer c;
+
+select substr(c.cust_name,1,2) from customer 
+c;

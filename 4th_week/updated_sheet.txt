@@ -1,0 +1,40 @@
+-- imp table 1 that is document_type --
+select * 
+from 
+ins_document_type
+order by 
+document_code asc;
+
+-- imp table 2 that is policy class --
+select * 
+from 
+ins_policy_class inc
+order by 
+inc.class_code asc;
+
+-- imp table 3 that is policy types --
+select 
+* 
+from 
+ins_policy_types
+where 
+class_code = '02';
+
+
+------------------------------------------------
+select ipc.class_name, ipt.policy_name,
+count(ia.policy_type_code)  
+from ins_assorted ia , ins_policy_types ipt, ins_policy_class ipc
+where 
+ia.document_code in ('04','05')
+and 
+ia.policy_type_code = ipt.policy_type_code
+and 
+ipt.class_code = ipc.class_code
+and 
+issue_date
+between 
+to_date('01/01/2022','dd/mm/yyyy')
+and 
+to_date('28/02/2022','dd/mm/yyyy')
+group by ipc.class_name,ipt.policy_name

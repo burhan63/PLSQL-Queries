@@ -1,0 +1,20 @@
+-- is command sy hum edit kar sakhte hain tables mai without query--
+select * 
+from 
+ins_livestock_visit ilv
+where ilv.dairy_farm_name is null
+for update;
+
+===== another example == 
+select *
+from 
+ins_livestock_visit ilv
+where 
+ilv.unique_id = '0A9A1CABA7514795A976652342B2E9E7'
+for update;
+
+== creating GUID means unique id === 
+insert into 
+ins_livestock_visit (unique_id)
+values 
+(sys_guid()); 

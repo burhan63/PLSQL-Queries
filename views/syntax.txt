@@ -1,0 +1,22 @@
+== VIEWS IN PL/SQL ==
+views mai hum multiple queries call karsakhte hain is main if/else work nh karsakhta 
+hai
+
+syntax:
+-- creating view named as add_user --
+create or replace view add_user 
+as
+select * from customer c 
+order by cust_id asc;
+-- call view --
+select * from add_user;
+
+--insert records in view --
+insert into add_user(CUST_ID,CUST_NAME,CUST_AGE,CUST_GENDER,CUST_CONTACT,CUST_DEP,CUST_SALARY
+                     ,CUST_ADDRESS,ENT_DATE)values(111,'Atif Khanzada',35,'M',03112323222,'Networking'
+                     ,50000,'Block-06 Sharah-e-Faisal Karachi',to_date('22/06/2022','dd/mm/yyyy'));
+-- update records in view --
+update add_user set cust_age = 38 where cust_id = 111;
+
+-- how to drop view --
+drop view my_view;

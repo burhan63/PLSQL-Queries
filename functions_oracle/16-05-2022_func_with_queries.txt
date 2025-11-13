@@ -1,0 +1,40 @@
+==== FUNCTIONS WITH QUERY ======
+CREATE OR REPLACE FUNCTION total_amount_orders_table(x number)
+RETURN VARCHAR2
+IS
+l_total_amount varchar2(150);
+BEGIN
+  IF(x = 1)
+  THEN
+  SELECT SUM(o_price*o_quantity) INTO
+  l_total_amount
+  from
+  orders_table;
+  ELSE IF(x = 2)
+    THEN
+      SELECT COUNT(*) INTO
+      l_total_amount
+      FROM
+      products_orders;
+  ELSE IF (x=3)
+    THEN
+      SELECT count(a.o_id) into
+      l_total_amount
+      from
+      orders_table a ,
+      products_orders b
+      where
+      a.o_type = b.p_name;
+   ELSE IF(x>3)
+     THEN
+       l_total_amount := ('Value U Entered To Big....!!!');
+
+  ELSE
+    l_total_amount := ('No Record To Show....!!!');
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+  return l_total_amount;
+
+END;

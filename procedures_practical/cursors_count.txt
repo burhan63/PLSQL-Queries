@@ -1,0 +1,24 @@
+===== count values using cursors =====
+DECLARE 
+total_rows number(5);
+BEGIN
+  select count(*) into 
+  total_rows
+  from products_orders po
+  where 
+  po.p_headquarter like '%Shark Tank%';
+  
+  IF(sql%notfound)
+   THEN
+     dbms_output.put_line('No Rows Affected...!!!');
+  ELSE IF(sql%found)
+    THEN
+      --total_rows := sql%rowcount;
+      dbms_output.put_line(total_rows || 'Rows Affected');
+  ELSE
+    dbms_output.put_line('Error');
+    
+  END IF;
+  END IF;
+  
+END;

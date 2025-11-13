@@ -1,0 +1,83 @@
+========================================= online terminal work =================
+select * from product_order;
+
+select (order_price + GST + total_service_deduction) as calculate from product_order;
+
+
+
+
+
+======================= PL/SQL Work =============================
+
+
+select * from user_tables;
+
+select * from products;
+select * from ins_product_coverage;
+
+select * from products 
+inner join ins_product_coverage on
+products.p_id = ins_product_coverage.id(+);
+
+
+select * from INS_HEALTH_AGE_BAND;
+select * from ins_health_base_rate;
+
+-- perfect joins --
+select age_from, age_to, rate, limit1, limit2, base_rate from ins_health_age_band 
+inner join ins_health_base_rate on
+INS_HEALTH_AGE_BAND.band_code = ins_health_base_rate.base_rate_code;
+
+-- perfect right outer joins--
+select age_from, age_to, rate, limit1, limit2, base_rate from ins_health_age_band 
+inner join ins_health_base_rate on
+INS_HEALTH_AGE_BAND.band_code = ins_health_base_rate.base_rate_code(+);
+
+-- in operator --
+select * from ins_health_age_band where band_code in (17,18,19);
+
+-- not in operator --
+select * from ins_health_age_band where band_code not in (17,18,19,20);
+
+-- between operator --
+select * from ins_health_age_band where band_code between 17 and 20;
+
+-- select statement queries with where clause -- 
+select band_code, age_from, age_to, ent_by from ins_health_age_band where band_code = 22;
+
+-- carry with specific band code no --
+select * from ins_health_age_band where band_code = 20;
+
+-- and and or operator --
+--and operator --
+select * from ins_health_age_band where band_code = 22 and age_from = 11;
+
+-- or operator --
+select * from ins_health_age_band where band_code = 22 or age_from = 11;
+
+-- sub query --
+select age_from, age_to from ins_health_age_band
+where rate in
+(select rate from ins_health_age_band);
+
+-- perfect sub query --
+select limit1, limit2 from ins_health_base_rate
+where base_rate in
+(select base_rate from ins_health_base_rate where base_rate < 2000);
+
+-- inline query --
+select * from(
+       select * from ins_health_base_rate 
+       order by base_rate_code asc
+) where rownum < 5;
+
+-- inline query --
+select * from(
+       select * from ins_health_base_rate
+       order by base_rate_code asc
+) where rownum < 5;
+
+select * from product_sample;
+select * from ins_agent_commissions;
+select count(commission_rate) from ins_agent_commissions;
+select sum(commission_rate) from ins_agent_commissions;

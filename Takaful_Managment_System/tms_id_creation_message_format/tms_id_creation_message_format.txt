@@ -1,0 +1,10 @@
+== format for tms id creation message ==
+Dear Mr. Junaid,
+
+Requested surveyor ID has been created. Please login surveyor id with default password.
+ID credential are mentioned:
+
+ID                  :               03000197
+
+Portal Link :  https://portal.salaamtakaful.com/  
+TMSV2 Link http://124.29.233.123/tmsv2/

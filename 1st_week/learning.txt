@@ -1,0 +1,7 @@
+table 1 --> FTS_SET_AGENT_LOG
+table 2 --> FTS_SET_PRODRELATION_DTL_LOG
+
+select * from FTS_PRODGROUP_FCL_LOG; not exist
+
+learning website 
+https://www.techonthenet.com/oracle/tables/alter_table.php

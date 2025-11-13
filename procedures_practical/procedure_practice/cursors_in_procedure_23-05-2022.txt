@@ -1,0 +1,30 @@
+==== CURSORS IN PROCEDURE =====
+CREATE OR REPLACE PROCEDURE PROC_CURSOR_PR
+AS
+  emp_id employees.employee_id%type;
+  emp_fname employees.first_name%type;
+  emp_lname employees.last_name%type;
+  emp_email employees.email%type;
+  emp_phoneno employees.phone_number%type;
+  emp_hiredate employees.hire_date%type;
+
+  CURSOR C1 IS
+  select e.employee_id,e.first_name,e.last_name,e.email,e.phone_number,
+  e.hire_date from
+  employees e;
+  
+
+BEGIN
+  OPEN C1;
+  LOOP
+    FETCH C1 INTO emp_id,emp_fname,emp_lname,emp_email,
+    emp_phoneno,emp_hiredate;
+    EXIT WHEN C1%notfound;
+    dbms_output.put_line(emp_id || ' ' || emp_fname || ' ' || emp_lname || ' ' ||
+                        emp_email || ' ' || emp_phoneno || ' ' || emp_hiredate);
+  END LOOP;
+
+
+  CLOSE C1;
+
+END;

@@ -1,0 +1,41 @@
+== how to add tracker ==
+Step No: 01-> Firstly check the policy no or certificate no in following query
+
+select *
+from mt_pr_in_accessories mp 
+where mp.vehicle_detail_code in (
+select m.vehicle_detail_code
+from mt_vehicles_details m
+where m.assorted_code in (
+select ia.assorted_code 
+from ins_assorted ia 
+where ia.assorted_string like '%62306%'
+and ia.document_code = '07')
+)
+and then 
+
+Step No: 02-> Now run the following query 
+
+declare 
+begin
+  for rec in (select *
+from mt_vehicles_details m
+where m.assorted_code in (
+select ia.assorted_code 
+from ins_assorted ia 
+where ia.assorted_string like '%62306%'
+and ia.document_code = '07')
+and m.vehicle_detail_code <>'1446355')loop
+insert into mt_pr_in_accessories
+  (accessory_code, vehicle_detail_code, seq_no, market_value,  status_date, acc_premium, acc_addition_vd_code, 
+  acc_order_no, owned_by, prem_incl, tax_amount, parttaker_code)
+(select mpia.accessory_code, rec.vehicle_detail_code, mpia.seq_no, mpia.market_value, trunc(sysdate),
+mpia.acc_premium, rec.vehicle_detail_code, mpia.acc_order_no, mpia.owned_by, mpia.prem_incl, 
+mpia.tax_amount, mpia.parttaker_code
+from mt_pr_in_accessories mpia
+where mpia.vehicle_detail_code ='1446355');
+end loop;
+end;
+
+if in policy/certicate no data was blanked so you dont have to need the vehicle_detail_code other wise copy and paste
+in following partitions.

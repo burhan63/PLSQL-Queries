@@ -1,0 +1,32 @@
+== how to show all contribution in web Portal ==
+Step No: 01-> sub sy pehle excel ki sheet mai find kare gey kai user pehle sy bana hua hai agar bana hua hai tw yeh steps 
+hain warna user create karna parhey ga.
+
+Steps:
+sub sy pehle hum check kare gey kai assorted codes ki kitni entry hui hain 
+Query:
+select *
+from sy_user_clients s
+where s.user_cd ='08801299';
+
+Step No:02->
+or us kai bad hum daikhe Web Portal mai agar password expire araha hoga tw uski expiry date ko change karkai jo  bh current date 
+ho wo kardain gey 
+Query:
+select * from sy_users sy 
+where sy.user_cd = '08801299'
+for update;
+
+Step No:03->
+then hum assorted code nikaley gey jo excel ki sheet given hogi uskai policy no sy
+Query:
+select * from ins_assorted ia 
+where ia.assorted_string like '%Policy/Certificate%';
+
+Step No:04->
+or phr hum entry karey gey assorted jo nikala hoga usko enter kardey gey 
+Query:
+select *
+from sy_user_clients s
+where s.user_cd ='08801299'
+for update;

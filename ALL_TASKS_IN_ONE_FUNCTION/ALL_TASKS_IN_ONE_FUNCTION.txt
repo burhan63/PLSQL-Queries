@@ -1,0 +1,66 @@
+== ALL TASK IN ONE FUNCTION ==
+create or replace function my_ret_sysrefcursor(
+var_ret out sys_refcursor,
+choice number
+)
+return varchar2
+is
+result varchar2(50);
+begin
+  if(choice = '1')
+  then
+    result := 'Success';
+    open var_ret for select ia.assorted_code,
+    ia.agency_code, ia.generate_against,
+    ipt.policy_type_code,ipt.policy_name,
+    ipc.class_code, ipc.class_name from Ins_Assorted ia,
+    ins_policy_types ipt, ins_policy_class ipc,
+    ins_document_type idt
+    where ia.document_code in ('04','05','06','07')
+    and ia.ent_date between trunc(to_date('01/05/2022','dd/mm/yyyy')) and
+    trunc(to_date('31/05/2022','dd/mm/yyyy')) and
+    ia.sup_by is null
+    and ia.policy_type_code = ipt.policy_type_code
+    and ipt.class_code = ipc.class_code and
+    ia.document_code = idt.document_code;
+
+  elsif(choice = '2')
+  then
+    result := 'Success';
+    open var_ret for select ipc.class_name,ia.document_code,
+    count(ia.document_code)Document_Count from
+    ins_assorted ia, ins_policy_class ipc,
+    ins_policy_types ipt where ia.policy_type_code = ipt.policy_type_code
+    and ipt.class_code = ipc.class_code
+    and ia.document_code in('04','05','06','07') and
+    ia.sup_by is null and
+    ipt.policy_type_code <> 77
+    and ia.ent_date between trunc(to_date('01/05/2022','dd/mm/yyyy'))
+    and trunc(to_date('31/05/2022','dd/mm/yyyy'))
+    group by
+    ipc.class_name,ia.document_code;
+    
+  elsif(choice = '3')
+  then
+    result := 'Success';
+    open var_ret for select ipc.parttaker_category, count(ipc.parttaker_category) Count_Category
+    from ins_parttaker ip, ins_parttaker_category ipc
+    where ip.category_parttaker_code = ipc.category_parttaker_code
+    and ip.active = 'Y'
+    and ipc.category_parttaker_code in ('09', '08', '10', '27', '29', '28')
+    group by ipc.parttaker_category, ip.active
+    union all
+    select ipc.parttaker_category, count(ipc.parttaker_category) Count_Category
+    from ins_parttaker ip, ins_parttaker_category ipc
+    where ip.category_parttaker_code = ipc.category_parttaker_code
+    and nvl(ip.active, 'Y') = 'Y'
+    and ipc.category_parttaker_code in ('30', '31')
+    group by ipc.parttaker_category, ip.active;
+
+  else
+    result := 'Error';
+  end if;
+
+  return(result);
+
+end;

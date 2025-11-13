@@ -1,0 +1,14 @@
+===== for example entry_date = 01/01/2022 2:50PM:00 sec =========
+now i want to get 
+
+select ent_date 
+from
+ins_assorted ia ; -- this table show u the table now the problem is that entry_date = 01/01/2022 2:50PM:00 sec
+i want only date i-e 01/01/2022
+then 
+i have to use to_char() function 
+
+--- code ---
+select 
+to_char(ent_date,'dd/mm/yyyy') ent_date
+

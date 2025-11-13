@@ -1,0 +1,58 @@
+select * from user_tables;
+
+select * from FTS_SET_AGENT;
+
+select * from fts_set_agent_log;
+
+--inner joins using where clause (+) left outer join if (+) in last it means right outer join
+select * from 
+FTS_SET_AGENT,
+fts_set_agent_log 
+where
+FTS_SET_AGENT.FSAG_AGENT_CODE 
+= fts_set_agent_log.FSAG_AGENT_CODE;
+
+--left outer join
+select * from 
+FTS_SET_AGENT,
+fts_set_agent_log 
+where
+FTS_SET_AGENT.FSAG_AGENT_CODE 
+= fts_set_agent_log.FSAG_AGENT_CODE;
+
+--right outer join;
+select * from 
+FTS_SET_AGENT,
+fts_set_agent_log 
+where
+FTS_SET_AGENT.FSAG_AGENT_CODE
+=fts_set_agent_log.FSAG_AGENT_CODE(+); --right outer join;
+
+select * from FTS_SET_CUSTOMER;
+
+--join three tables 
+select * from
+FTS_SET_AGENT,
+fts_set_agent_log,
+FTS_SET_CUSTOMER 
+where 
+FTS_SET_AGENT.FSAG_AGENT_CODE = fts_set_agent_log.FSAG_AGENT_CODE 
+AND FTS_SET_AGENT.FSAG_AGENT_CODE = FTS_SET_CUSTOMER.Fscu_Customer_Code;
+
+
+
+--decode function in oracle
+
+select fsag_agent_code, 
+decode
+(fsag_salaried_yn, 'N','NO',
+                    'Y','YES',
+                    'NULL','UNKNOWN')                   
+from FTS_SET_AGENT;
+
+--three tables which have to attached
+select * from FTS_SET_AGENT;
+select * from FTS_SET_CUSTOMER;
+select * from fts_set_agent_log;
+
+

@@ -1,0 +1,38 @@
+=== health statement table == 
+CREATE TABLE health_statement(
+Name varchar2(50),
+DOB date,
+CNIC_no varchar2(16),
+passport_no varchar2(15),
+knowledge_and_beleive varchar2(250),
+comments varchar2(250),
+suffered_conditions char(1),
+a char(1),
+b char(1),
+c char(1),
+d char(1),
+e char(1),
+f char(1),
+g char(1),
+h char(1),
+i char(1),
+j char(1),
+k char(1),
+l char(1),
+m char(1),
+n char(1),
+o char(1),
+p char(1),
+q char(1),
+X_Ray_invest char(1),
+ill_impairment char(1),
+re_curr_med_cond char(1),
+Pos_HIV_AIDS char(1),
+cur_good_health char(1),
+pres_pragnent char(1),
+abortion_or_miscarriage char(1),
+di_Br_ov_ut_ce char(1),
+under_hyster char(1)                                           
+);
+
+select * from health_statement hs;

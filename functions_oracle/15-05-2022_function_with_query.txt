@@ -1,0 +1,8 @@
+create or replace function my_third_func(u_id number)
+return varchar2
+IS
+result varchar2(100);
+BEGIN
+  select count(u_id) into result from university_ssuet;
+  return (result);
+END;

@@ -1,0 +1,6 @@
+== how to check kai kaha humain no wagira change karna hai ===
+
+
+--> agar certificate aye or us mai changing karni ho tw hum mt_vehicles table mai 
+change kare ge
+--> agar mai policy mai kuch aye tw hum main policy mai change kare gey jo bh updation aye 

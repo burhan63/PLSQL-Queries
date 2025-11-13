@@ -1,0 +1,88 @@
+=== CRUD USING PROCEDURE ===
+CREATE OR REPLACE PROCEDURE cnic_crud(CHOICE                    VARCHAR2,
+                                      P_N_ID                    NUMBER,
+                                      P_BRANCH_ID               NUMBER,
+                                      P_BRANCH_NAME             VARCHAR2,
+                                      P_BRANCH_CITY             VARCHAR2,
+                                      P_CNIC_TYPE               CHAR,
+                                      P_CNIC_TRACCKING_NO       NUMBER,
+                                      P_CONSUMER_NAME           VARCHAR2,
+                                      P_CONSUMER_AGE            VARCHAR2,
+                                      P_CONSUMER_GENDER         CHAR,
+                                      P_CONSUMER_DOB            DATE,
+                                      P_CONSUMER_CONTACT        NUMBER,
+                                      P_CONSUMER_PRESENTADDRESS VARCHAR2,
+                                      P_CONSUMER_CURENTADDRESS  VARCHAR2,
+                                      P_CONSUMER_NATIONALITY    VARCHAR2,
+                                      P_CONSUMER_RELIGION       VARCHAR2,
+                                      P_CNIC_ISSUEDATE          DATE,
+                                      P_CNIC_EXPIRYDATE         DATE
+                                      
+                                      ) AS
+BEGIN
+  DBMS_OUTPUT.put_line('==== WELCOME IN NADRA =====');
+  IF (CHOICE = 'INSERT') THEN
+    INSERT INTO CNIC_CRUD_OPR
+      (N_ID,
+       BRANCH_ID,
+       BRANCH_NAME,
+       BRANCH_CITY,
+       CNIC_TYPE,
+       CNIC_TRACCKING_NO,
+       CONSUMER_NAME,
+       CONSUMER_AGE,
+       CONSUMER_GENDER,
+       CONSUMER_DOB,
+       CONSUMER_CONTACT,
+       CONSUMER_PRESENTADDRESS,
+       CONSUMER_CURENTADDRESS,
+       CONSUMER_NATIONALITY,
+       CONSUMER_RELIGION,
+       CNIC_ISSUEDATE,
+       CNIC_EXPIRYDATE)
+    VALUES
+      (P_N_ID,
+       P_BRANCH_ID,
+       P_BRANCH_NAME,
+       P_BRANCH_CITY,
+       P_CNIC_TYPE,
+       P_CNIC_TRACCKING_NO,
+       P_CONSUMER_NAME,
+       P_CONSUMER_AGE,
+       P_CONSUMER_GENDER,
+       P_CONSUMER_DOB,
+       P_CONSUMER_CONTACT,
+       P_CONSUMER_PRESENTADDRESS,
+       P_CONSUMER_CURENTADDRESS,
+       P_CONSUMER_NATIONALITY,
+       P_CONSUMER_RELIGION,
+       P_CNIC_ISSUEDATE,
+       P_CNIC_EXPIRYDATE);
+  ELSIF (CHOICE = 'UPDATE') THEN
+    UPDATE CNIC_CRUD_OPR
+       SET BRANCH_ID               = P_BRANCH_ID,
+           BRANCH_NAME             = P_BRANCH_NAME,
+           BRANCH_CITY             = P_BRANCH_CITY,
+           CNIC_TYPE               = P_CNIC_TYPE,
+           CNIC_TRACCKING_NO       = P_CNIC_TRACCKING_NO,
+           CONSUMER_NAME           = P_CONSUMER_NAME,
+           CONSUMER_AGE            = P_CONSUMER_AGE,
+           CONSUMER_GENDER         = P_CONSUMER_GENDER,
+           CONSUMER_DOB            = P_CONSUMER_DOB,
+           CONSUMER_CONTACT        = P_CONSUMER_CONTACT,
+           CONSUMER_PRESENTADDRESS = P_CONSUMER_PRESENTADDRESS,
+           CONSUMER_CURENTADDRESS  = P_CONSUMER_CURENTADDRESS,
+           CONSUMER_NATIONALITY    = P_CONSUMER_NATIONALITY,
+           CONSUMER_RELIGION       = P_CONSUMER_RELIGION,
+           CNIC_ISSUEDATE          = P_CNIC_ISSUEDATE,
+           CNIC_EXPIRYDATE         = P_CNIC_EXPIRYDATE
+     WHERE N_ID = P_N_ID;
+  ELSIF (CHOICE = 'DELETE') THEN
+    DELETE CNIC_CRUD_OPR WHERE N_ID = P_N_ID;
+  
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('ERROR');
+  
+  END IF;
+
+END;

@@ -1,0 +1,31 @@
+==== sys_refcursor in procedure ==
+CREATE OR REPLACE PROCEDURE proc_complex(
+var_ret out sys_refcursor
+)
+AS
+BEGIN
+  OPEN var_ret for
+  select e.first_name,e.last_name,e.email,
+  e.hire_date,
+  j.job_title,d.department_name from
+  employees e,
+  jobs j,
+  departments d
+  where
+  e.job_id = j.job_id
+  and
+  e.employee_id = d.department_id
+  and d.department_name NOT IN (select d.department_name
+  from departments d
+  where d.department_name like 'C%')
+  and
+  e.hire_date IN(
+  select e.hire_date from
+  employees e
+  where e.hire_date between
+  trunc(to_date('17/06/1987','dd/mm/yyyy'))
+  and trunc(to_date('24/01/1998','dd/mm/yyyy'))
+  );
+  
+
+END;

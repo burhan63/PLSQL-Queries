@@ -1,0 +1,44 @@
+== how to create a unique id in pl/sql === 
+this operation is performed in insert operation 
+
+insert into table_name(column name) values(set_guid()); --> excecute it 
+after that press commit option that are places in top 
+the id is excecuted
+
+select * from ins_livestock_visit where dairy_farm_name is null for update --> this command is help you 
+to update in table that are excuted 
+
+=== insertion ==
+-- insert in ins_livestock_visit --
+insert into 
+ins_livestock_visit (unique_id,dairy_farm_name,city_code,address,contact_person,contact_no,
+email_address,lat,lng,ent_by,
+ent_date,status,reason,follow_up_date,
+update_by,update_date,state_code,cnic,ntn_no,
+remarks,district_code,no_of_animal,agency_code,below_18_months,
+between_18_months_7_years,above_7_years ) values 
+(sys_guid(),'',01,'','',123456789,'',12,12,
+'LIVESTOCK',to_date('20/04/2022','dd/mm/yyyy'),0,'',to_date('25/04/2022','dd/mm/yyyy'),
+'','',24,'','','',0187,'',0,'',0,0);
+
+== selection == 
+select * 
+from ins_livestock_visit ilv 
+where 
+ilv.dairy_farm_name is null;
+
+
+== updation == 
+-- updation --
+update 
+ins_livestock_visit ilv 
+set ilv.address = 'pib karachi' 
+where 
+ilv.unique_id = '4ECA238DBCA344A7B9B9B96D1C4501BC';
+
+== deletion == 
+-- deletion -- 
+delete 
+from ins_livestock_visit ilv 
+where 
+ilv.unique_id = '96ac5f98-0e78-4239-b284-a316d41c0eb2';

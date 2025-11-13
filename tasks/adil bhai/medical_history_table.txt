@@ -1,0 +1,29 @@
+CREATE TABLE medical_history(
+FL_age number,   
+FL_st_health varchar2(20),
+FD_age number,
+FD_Cause_death varchar(20),
+ML_age number,
+ML_st_health varchar(20),
+MD_age number,
+MD_Cause_death varchar(20),
+Wife_Husb_L_age number,
+Wife_Husb_L_St_Health varchar(20),
+Wife_Husb_D_age number,
+Wife_Husb_D_Cau_death varchar(20),
+BL_age number,
+BL_st_health varchar(20),
+BD_age number,
+BD_Cause_death varchar(20),
+SL_age number,
+SL_st_health varchar(20),
+SD_age number,
+SD_Cause_death varchar(20),
+CL_age number,
+CL_st_health varchar(20),
+CD_age number,
+CD_Cause_death varchar(20)
+);
+
+select * from 
+medical_history mh;

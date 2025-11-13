@@ -1,0 +1,27 @@
+== how to change a color code in pl/sql according to requirment == 
+Step : 01:--> Firslty get the assorted code in according given policy number 
+
+select * from ins_assorted ia 
+where ia.assorted_string like '%assorted_string%';
+
+Step : 02: --> now check generate against, premium det, claim 
+
+select * from ins_assorted ia 
+where ia.generate_against = '040000118527';
+
+select * from ins_premium_det ip 
+where ip.assorted_code = '040000118527';
+
+
+select * from ins_claim ic 
+where ic.insurance_type = '040000118527';
+
+Step : 03 --> now check color code in colors table 
+
+select * from colors;
+
+Step : 04 --> Final step update the color code in mt_vehicles_details table
+
+select * from mt_vehicles_details vd 
+where vd.assorted_code = '040000118527'
+for update;

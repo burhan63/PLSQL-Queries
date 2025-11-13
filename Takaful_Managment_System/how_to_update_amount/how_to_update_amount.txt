@@ -1,0 +1,23 @@
+== How to update Amount ==
+
+Step No:01 sub sy pehle query kai bad yeh check karna hai kai current month hai yah nh current month hone 
+lazmi hai
+Query:
+select * from ins_premium_mast c
+where c.vouchno='PV Number'
+and c.payment_type = 'Payment PV'
+
+is query mai yeh check karna hai kai current month hai or old amount copy karkai rakh laini hai 
+
+Step No:02
+Query:
+select * from ins_premium_mast c
+where c.vouchno='PV Number'
+and c.payment_type = 'Payment PV'
+for update;
+
+yeh karne kai bad amount change kardaini hai or remarks mai jo nechey comments likhey huey hain zaror dalna hai
+
+Request by Mr. Kashif (Accounts) 22-Aug-2022
+Change cheque Amount 45,848/=(Amount Jo update hone ayi hai) instead of this 46981(Old Amount)
+

@@ -1,0 +1,14 @@
+== how to get agency codes with names ==
+select ipc.parttaker_category, count(ipc.parttaker_category) Count_Category
+  from ins_parttaker ip, ins_parttaker_category ipc
+ where ip.category_parttaker_code = ipc.category_parttaker_code
+   and ip.active = 'Y'
+   and ipc.category_parttaker_code in ('09', '08', '10', '27', '29', '28')
+ group by ipc.parttaker_category, ip.active
+union all
+select ipc.parttaker_category, count(ipc.parttaker_category) Count_Category
+  from ins_parttaker ip, ins_parttaker_category ipc
+ where ip.category_parttaker_code = ipc.category_parttaker_code
+   and nvl(ip.active, 'Y') = 'Y'
+   and ipc.category_parttaker_code in ('30', '31')
+ group by ipc.parttaker_category, ip.active;

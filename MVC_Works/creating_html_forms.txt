@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body> 
+    <h2>HTML FORMS</h2>
+    <form action ="/actions_page.php">
+    <label for="fname">First Name :</label><br>
+    <input type ="text" id = "fname" name ="fname"><br>
+    <label for="lname">Last Name :</label><br>
+    <input type ="text" id = "lanme" name ="lname"><br>
+    <label for="gender">Gender :</label><br>
+    <input type ="text" id = "gender" name ="gender"><br>
+    <label for="contact">Contact :</label><br>
+    <input type ="text" id = "contact" name ="contact"><br>
+    <label for="entry_no">Entry No :</label><br>
+    <input type ="number" id = "entry_no" name ="contact"><br><br>
+    <input type ="Submit" value = "Submit"><br><br>
+    <input type = "radio" id = "fav_language" name = "fav_language">
+    <label for ="radio_button">Checked</label>
+    <input type = "radio" id = "fav_language1" name = "fav_language1">
+    <label for ="radio_button">Un-Checked</label>
+    </form>
+    <p> Hello its my First Web Form </p>
+</body>
+</html>

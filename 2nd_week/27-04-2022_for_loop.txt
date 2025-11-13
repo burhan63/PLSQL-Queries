@@ -1,0 +1,26 @@
+-- for loop in pl/sql --
+BEGIN
+  FOR l_counter IN 1..5
+  LOOP
+    DBMS_OUTPUT.PUT_LINE( l_counter );
+  END LOOP;
+END;
+
+
+-- creating table of 2 using for loop --
+DECLARE
+    l_step PLS_INTEGER := 2;
+BEGIN
+    FOR l_counter IN 1..10 LOOP
+        dbms_output.put_line(l_counter*l_step);
+    END LOOP;
+END;
+
+
+-- reverse numbers using loop-- 
+BEGIN
+FOR l_counter in REVERSE 1..10
+LOOP
+    DBMS_OUTPUT.PUT_LINE(l_counter);
+END LOOP;
+END;

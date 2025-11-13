@@ -1,0 +1,6 @@
+== PURPOSE OF TRIGGERS ==
+EXPLANATION OF TRIGGERS : 
+triggers ka purpose yeh hota hai kai hum aik lock file create kardaite hain triggers kai zariye 
+like hum nai yeh lock kardia hai kai 20/05/2022 tak ki limit laga di hai tw ab jab bh koi record insert hoga after limit of 
+date tw trigger ki lock file ki wajah sy yeh hone nh dai ga or agar ho bh gya tw trigger yeh bata daiga yeh yeh new record 
+insert hua hai after the limit of the date 

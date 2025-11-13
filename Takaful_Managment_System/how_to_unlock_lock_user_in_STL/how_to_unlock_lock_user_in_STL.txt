@@ -1,0 +1,4 @@
+== how to LOCK and UNLOCK user in pl/sql ==
+
+select * from sy_users sy 
+where sy.user_cd like '%username%'

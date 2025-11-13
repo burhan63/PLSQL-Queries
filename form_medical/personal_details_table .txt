@@ -1,0 +1,18 @@
+CREATE TABLE personal_details(
+Alcohol char(1),
+Beer char(1),
+Wine char(1), 
+Sprint char(1),
+Other char(1),
+A_Quantity varchar(20), 
+Tobacco char(1),
+Cigar char(1),
+Cigarette char(1),
+Bidi char(1),
+Chewing_Tobacco char(1),
+T_Quantity varchar(20),
+curr_consum_narcotics char(1)
+);
+
+select * from 
+personal_details pd;

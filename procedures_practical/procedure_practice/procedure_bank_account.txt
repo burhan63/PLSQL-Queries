@@ -1,0 +1,55 @@
+=== PROCEDURE ACCOUNT NO GENERATION ==
+CREATE OR REPLACE PROCEDURE user1_opr(
+  choice number,
+  user_id varchar2,
+  user_name varchar2,
+  user_gender char,
+  user_contact number,
+  user_presentaddress varchar2,
+  user_currentaddress varchar2,
+  user_CNIC number,
+  user_already_account char,
+  acc_no number,
+  inner_choice varchar2,
+  message varchar2
+)
+AS
+BEGIN
+  IF(choice = 1)
+  THEN
+    dbms_output.put_line('Welcome to ABC Bank Now you Have Account Open Easily');
+    INSERT INTO user1(u_id,u_name,u_gender,u_contact,u_presentaddress,u_currentaddress,
+                      u_CNIC,already_account,account_no )
+                      VALUES
+                      (sys_guid(),user_name,user_gender,user_contact, user_presentaddress,
+                      user_currentaddress,user_CNIC,user_already_account,dbms_random.random);
+  ELSE IF(choice = 2)
+    THEN
+     dbms_output.put_line('Welcome to ABC Bank..!! What can i Help u');
+      IF(inner_choice = 'C')
+      THEN
+        dbms_output.put_line('Your Credit Card Inquary is Succesfully Fetched..!!');
+      END IF;
+
+  ElSE IF (choice = 3)
+    THEN
+      update user1 SET u_name = user_name , u_gender = user_gender , u_contact = user_contact,
+                            u_presentaddress = user_presentaddress , u_currentaddress = user_currentaddress,
+                            u_CNIC = user_CNIC , already_account = already_account  WHERE
+                            u_id = user_id;
+
+ ELSE IF(choice = 4)
+   THEN
+     delete user1 where u_id = user_id;
+ ELSE
+   dbms_output.put_line('Error');
+
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+
+
+
+
+END;

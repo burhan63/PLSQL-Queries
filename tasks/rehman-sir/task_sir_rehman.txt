@@ -1,0 +1,9 @@
+== task == 
+== check partakker code, partakker name ====
+
+select ip.parttaker_code,ip.parttaker_name from 
+ins_parttaker ip, ins_parttaker_category ipc
+where 
+ip.category_parttaker_code = ipc.category_parttaker_code
+and ipc.category_parttaker_code = '27'
+and ip.active='Y';

@@ -1,0 +1,35 @@
+CREATE OR REPLACE PROCEDURE sp_add
+(
+X in number,
+Y in number,
+Z out number
+)
+AS
+BEGIN
+  IF(X=Y)
+  THEN
+    Z:=(X+Y);
+    dbms_output.put_line('Addition is Done');
+  ELSE IF(X>Y)
+    THEN
+      Z:=(X-Y);
+      dbms_output.put_line('Subtraction is Done');
+  ELSE IF(X<Y)
+    THEN
+      Z:=(X*Y);
+      dbms_output.put_line('Multiplication is Done');
+  ELSE IF(X=99 and Y=99)
+    THEN
+    Z:=(X/Y);
+    dbms_output.put_line('Division is Done');
+  ELSE
+    Z:=0;
+    dbms_output.put_line('You are 0');
+
+
+  END IF;
+  END IF;
+  END IF;
+  END IF;
+
+END;

@@ -1,0 +1,15 @@
+== how to open sniping tool using shortkey ==
+windows+shift+s
+== how to get the find and replace option using shortcut key == 
+ctrl+f
+== how to save document using shortcut key == 
+ctrl+s
+== how to create a folder using shortcut key ==
+ctrl+shift+n
+== how to cut document ==
+ctrl+x
+== how to copy document and paste ==
+--> ctrl+c for copy
+--> ctrl+v for paste
+== how to open new sql window using shortcut key ==
+alt+2+s
